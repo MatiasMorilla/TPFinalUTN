@@ -6,36 +6,36 @@
 
     class Student extends Person
     {
-        private $docket;
+        private $fileNumber;
         private $studyStatus;
         private $career;
-        private $maritalStatus;
+        private $idStudent;
 
-        public function __construct($email, $password, $name, $lastName, $dni, $gender, $dateOfBirth, $phoneNumber, $docket, $studyStatus, $career, $maritalStatus, $city, $street, $number, $floor = null, $apartment = null)
+        public function __construct($email, $password, $name, $lastName, $dni, $gender, $dateOfBirth, $phoneNumber, $fileNumber, $studyStatus, $career, $idStudent, $city, $street, $number, $floor = null, $apartment = null)
         {
             parent::__construct($email, $password, $name, $lastName, $dni, $gender, $dateOfBirth, $phoneNumber, $city, $street, $number, $floor, $apartment);
-            $this->docket = $docket;
+            $this->fileNumber = $fileNumber;
             $this->studyStatus = $studyStatus;
             $this->career = $career;
-            $this->maritalStatus = $maritalStatus;
+            $this->idStudent = $idStudent;
         }
 
         /**
-         * Get the value of docket
+         * Get the value of fileNumber
          */ 
-        public function getDocket()
+        public function getFileNumber()
         {
-                return $this->docket;
+                return $this->fileNumber;
         }
 
         /**
-         * Set the value of docket
+         * Set the value of fileNumber
          *
          * @return  self
          */ 
-        public function setDocket($docket)
+        public function setFileNumber($fileNumber)
         {
-                $this->docket = $docket;
+                $this->fileNumber = $fileNumber;
 
                 return $this;
         }
@@ -81,21 +81,21 @@
         }
 
         /**
-         * Get the value of maritalStatus
+         * Get the value of idStudent
          */ 
-        public function getMaritalStatus()
+        public function getIdStudent()
         {
-                return $this->maritalStatus;
+                return $this->idStudent;
         }
 
         /**
-         * Set the value of maritalStatus
+         * Set the value of idStudent
          *
          * @return  self
          */ 
-        public function setMaritalStatus($maritalStatus)
+        public function setIdStudent($idStudent)
         {
-                $this->maritalStatus = $maritalStatus;
+                $this->idStudent = $idStudent;
 
                 return $this;
         }
