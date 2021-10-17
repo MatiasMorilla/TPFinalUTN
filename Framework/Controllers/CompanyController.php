@@ -4,13 +4,13 @@
     use DAO\CompanyDAO as companyDAO;
     use Models\Company as company;
 
-    class StudentController
+    class CompanyController
     {
-        private $companyDAO;
+        private $CompanyDAO;
 
         public function __construct()
         {
-            $this->companyDAO = new CompanyDAO();
+            $this->CompanyDAO = new CompanyDAO();
         }
 
         public function ShowAddView()
@@ -20,7 +20,7 @@
 
         public function ShowListView()
         {
-            $companyList = $this->companyDAO->GetAll();
+            $companyList = $this->CompanyDAO->GetAll();
 
             require_once(VIEWS_PATH."company-list.php");
         }
@@ -29,7 +29,7 @@
         {
             $company = new Company($name,$cuil,$address,$phoneNumber,$email);
             
-            $this->companyDAO->Add($company);
+            $this->CompanyDAO->Add($company);
 
             $this->ShowAddView();
         }
