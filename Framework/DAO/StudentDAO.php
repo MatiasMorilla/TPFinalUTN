@@ -30,9 +30,18 @@
 
             foreach($this->studentList as $student)
             {
-                $valuesArray["recordId"] = $student->getRecordId();
-                $valuesArray["firstName"] = $student->getFirstName();
+                $valuesArray["email"] = $student->getEmail();
+                $valuesArray["password"] = $student->getPassword();
+                $valuesArray["name"] = $student->getName();
                 $valuesArray["lastName"] = $student->getLastName();
+                $valuesArray["dni"] = $student->getDni();
+                $valuesArray["gender"] = $student->getGender();
+                $valuesArray["birthDate"] = $student->getBirthDate();
+                $valuesArray["phoneNumber"] = $student->getPhoneNumber();
+                $valuesArray["fileNumber"] = $student->getFileNumber();
+                $valuesArray["studyStatus"] = $student->getStudyStatus();
+                $valuesArray["career"] = $student->getCareer();
+                $valuesArray["idStudent"] = $student->getIdStudent();
 
                 array_push($arrayToEncode, $valuesArray);
             }
@@ -54,10 +63,35 @@
 
                 foreach($arrayToDecode as $valuesArray)
                 {
-                    $student = new Student();
-                    $student->setRecordId($valuesArray["recordId"]);
-                    $student->setFirstName($valuesArray["firstName"]);
+                    $email = $valuesArray["email"];
+                    $password = $valuesArray["password"];
+                    $name = $valuesArray["name"];
+                    $lastName = $valuesArray["lastName"];
+                    $dni = $valuesArray["dni"];
+                    $gender = $valuesArray["gender"];
+                    $birthDate = $valuesArray["birthDate"];
+                    $phoneNumber = $valuesArray["phoneNumber"];
+                    $fileNumber = $valuesArray["fileNumber"];
+                    $studyStatus = $valuesArray["studyStatus"];
+                    $career = $valuesArray["career"];
+                    $idStudent = $valuesArray["idStudent"];
+                    
+                    $student = new Student($email, $password, $name, $lastName, $dni, $gender, $birthDate, $phoneNumber, $fileNumber, $studyStatus, $career, $idStudent);
+                   
+
+                    /* $student = new Student();
+                    $student->setEmail($valuesArray["email"]);
+                    $student->setPassword($valuesArray["password"]);
+                    $student->setName($valuesArray["name"]);
                     $student->setLastName($valuesArray["lastName"]);
+                    $student->setDni($valuesArray["dni"]);
+                    $student->setGender($valuesArray["gender"]);
+                    $student->setBirthDate($valuesArray["birthDate"]);
+                    $student->setPhoneNumber($valuesArray["phoneNumber"]);
+                    $student->setFileNumber($valuesArray["fileNumber"]);
+                    $student->setStudyStatus($valuesArray["studyStatus"]);
+                    $student->setCareer($valuesArray["career"]);
+                    $student->setIdStudent($valuesArray["idStudent"]); */
 
                     array_push($this->studentList, $student);
                 }

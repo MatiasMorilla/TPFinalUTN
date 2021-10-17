@@ -1,5 +1,6 @@
 [
     {
+
         "recordId": "1",
         "firstName": "Matias",
         "lastName": "Morilla"
@@ -10,8 +11,20 @@
         "lastName": "morilla fuoco"
     },
     {
-        "recordId": "1234",
-        "firstName": "mariela",
-        "lastName": "Valentini"
+        
+
+        "email": "roquemorilla@hotmail.com",
+        "password": "123456",
+        "name": "roque",
+        "lastName": "morilla fuoco",
+        "dni": "94531524",
+        "gender": "Masculino",
+        "birthDate": "2021-10-14",
+        "phoneNumber": "0223155024545",
+        "fileNumber": "1",
+        "studyStatus": "En Curso",
+        "career": "Carrera 1",
+        "idStudent": 0
+
     }
 ]
