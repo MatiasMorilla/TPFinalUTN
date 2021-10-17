@@ -97,5 +97,44 @@
                 }
             }
         }
+        private function RetrieveDataAPI()
+        {
+            $this->studentList = array();
+
+            if(file_exists("https://utn-students-api.herokuapp.com/api/Student"))
+            {
+                $opt = array(
+                    "http" =>array(
+                        "method" => "GET",
+                        "header" => "x-api-key: 4f3bceed-50ba-4461-a910-518598664c08\r\n",
+                    )
+                );
+                $ctx = stream_context_create($opt);
+
+                $jsonContent = file_get_contents("https://utn-students-api.herokuapp.com/api/Student", false, $ctx);
+
+                $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
+
+                foreach($arrayToDecode as $valuesArray)
+                {
+                    $email = $valuesArray["email"];
+                    $password = $valuesArray["password"];
+                    $name = $valuesArray["name"];
+                    $lastName = $valuesArray["lastName"];
+                    $dni = $valuesArray["dni"];
+                    $gender = $valuesArray["gender"];
+                    $birthDate = $valuesArray["birthDate"];
+                    $phoneNumber = $valuesArray["phoneNumber"];
+                    $fileNumber = $valuesArray["fileNumber"];
+                    $studyStatus = $valuesArray["studyStatus"];
+                    $career = $valuesArray["career"];
+                    $idStudent = $valuesArray["idStudent"];
+                    
+                    $student = new Student($email, $password, $name, $lastName, $dni, $gender, $birthDate, $phoneNumber, $fileNumber, $studyStatus, $career, $idStudent);
+
+                    array_push($this->studentList, $student);
+                }
+            } 
+        }         
     }
 ?>
