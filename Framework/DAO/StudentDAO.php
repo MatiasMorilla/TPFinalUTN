@@ -3,9 +3,7 @@
 
     use DAO\IStudentDAO as IStudentDAO;
     use Models\Student as Student;
-    /* require_once('Views\curl.php');
-
-    var_dump($json); */
+    
 
     class StudentDAO implements IStudentDAO
     {
@@ -103,41 +101,41 @@
         private function RetrieveDataAPI()
         {
             $this->studentList = array();
+            
+                $ch = curl_init();
 
-            if(file_exists("https://utn-students-api.herokuapp.com/api/Student"))
-            {
-                $opt = array(
-                    "http" =>array(
-                        "method" => "GET",
-                        "header" => "x-api-key: 4f3bceed-50ba-4461-a910-518598664c08\r\n",
-                    )
-                );
-                $ctx = stream_context_create($opt);
+                curl_setopt($ch, CURLOPT_URL, "https://utn-students-api.herokuapp.com/api/Student");
+                curl_setopt($ch, CURLOPT_HTTPHEADER, array("x-api-key: 4f3bceed-50ba-4461-a910-518598664c08"));
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-                $jsonContent = file_get_contents("https://utn-students-api.herokuapp.com/api/Student", false, $ctx);
+                $respuesta = curl_exec($ch);
 
-                $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
+                $json = json_decode($respuesta, true);
+
+                curl_close($ch);
+
+                $arrayToDecode =  $json;
 
                 foreach($arrayToDecode as $valuesArray)
                 {
                     $email = $valuesArray["email"];
-                    $password = $valuesArray["password"];
-                    $name = $valuesArray["name"];
+                    //$password = $valuesArray["password"];
+                    $name = $valuesArray["firstName"];
                     $lastName = $valuesArray["lastName"];
                     $dni = $valuesArray["dni"];
                     $gender = $valuesArray["gender"];
                     $birthDate = $valuesArray["birthDate"];
                     $phoneNumber = $valuesArray["phoneNumber"];
                     $fileNumber = $valuesArray["fileNumber"];
-                    $studyStatus = $valuesArray["studyStatus"];
-                    $career = $valuesArray["career"];
-                    $idStudent = $valuesArray["idStudent"];
+                    $studyStatus = $valuesArray["active"];
+                    $career = $valuesArray["careerId"];
+                    $idStudent = $valuesArray["studentId"];
                     
-                    $student = new Student($email, $password, $name, $lastName, $dni, $gender, $birthDate, $phoneNumber, $fileNumber, $studyStatus, $career, $idStudent);
+                    $student = new Student($email, 1234, $name, $lastName, $dni, $gender, $birthDate, $phoneNumber, $fileNumber, $studyStatus, $career, $idStudent);
 
                     array_push($this->studentList, $student);
                 }
-            } 
+             
         }         
     }
 ?>
