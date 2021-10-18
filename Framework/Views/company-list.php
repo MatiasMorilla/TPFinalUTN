@@ -38,7 +38,6 @@
                <table class="table bg-light-alpha">
                     <thead>
                          <th>Nombre</th>
-                         <th>Cuil</th>
                          <th>Direccion</th>
                          <th>Telefono</th>
                          <th>Email</th>
@@ -51,10 +50,14 @@
                                    ?>
                                         <tr>
                                              <td><?php echo $company->getName() ?></td>
-                                             <td><?php echo $company->getCuil() ?></td>
                                              <td><?php echo $company->getAddress() ?></td>
                                              <td><?php echo $company->getPhoneNumber() ?></td>
                                              <td><?php echo $company->getEmail() ?></td>
+                                             <td>
+                                             <form action="<?php echo FRONT_ROOT ?>Company/ShowListView" method="GET">
+                                                  <button class="btn btn-secondary my-2 my-sm-0" type="submit" >Mas informacion</button>
+                                             </form>
+                                             </td>
                                         </tr>
                                    <?php
                                    }else if($name == null){
@@ -62,15 +65,20 @@
                                    ?>
                                         <tr>
                                              <td><?php echo $company->getName() ?></td>
-                                             <td><?php echo $company->getCuil() ?></td>
                                              <td><?php echo $company->getAddress() ?></td>
                                              <td><?php echo $company->getPhoneNumber() ?></td>
                                              <td><?php echo $company->getEmail() ?></td>
+                                             <td>
+                                             <form action="<?php echo FRONT_ROOT ?>Company/ShowCompany" method="GET">
+                                                  <button class="btn btn-secondary my-2 my-sm-0" type="submit" >Mas informacion</button>
+                                             </form>
+                                             </td>
                                         </tr>
                                    <?php
                                    }
                               }
                          ?>
+
                          </tr>
                     </tbody>
                </table>

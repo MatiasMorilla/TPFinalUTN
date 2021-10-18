@@ -25,6 +25,12 @@
             require_once(VIEWS_PATH."company-list.php");
         }
 
+        public function ShowCompany(){
+            $company = null;
+            if(isset($_GET["name"])){
+                
+            }
+        }
         public function Search(){
             $name = null;
             if(isset($_GET["name"])){
