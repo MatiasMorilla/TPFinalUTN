@@ -21,6 +21,7 @@
         public function ShowListView()
         {
             $studentList = $this->studentDAO->GetAll();
+            $email = null;
 
             require_once(VIEWS_PATH."student-list.php");
         }
@@ -33,5 +34,23 @@
 
             $this->ShowAddView();
         }
+
+        public function Search(){
+            $email = null;
+            if(isset($_GET["email"])){
+                $email =$_GET["email"];
+            }
+            
+            $studentList = $this->studentDAO->GetAll();
+            $studentFinded = null;
+            foreach($studentList as $student)
+            {
+                if($email == $student->getEmail()){
+                    $studentFinded = $student;
+                }
+            }
+            
+            require_once(VIEWS_PATH."student-list.php");
+        }     
     }
 ?>
