@@ -26,11 +26,30 @@
         }
 
         public function ShowCompany(){
-            $company = null;
+            $name = null;
             if(isset($_GET["name"])){
-                
+                $name =$_GET["name"];
             }
+            
+            $companyList = $this->CompanyDAO->GetAll();
+            $companyFinded = null;
+            foreach($companyList as $company)
+            {
+                if($name == $company->getName()){
+                    $companyFinded = $company;
+                }
+            }
+
+            $companyName = $companyFinded->getName();
+            $companyAddress =  $companyFinded->getAddress();
+            $companyPhoneNumber =  $companyFinded->getPhoneNumber();
+            $companyEmail =  $companyFinded->getEmail();
+            $companyCuil=  $companyFinded->getCuil();
+
+            require_once(VIEWS_PATH."company-perfil.php");
+
         }
+
         public function Search(){
             $name = null;
             if(isset($_GET["name"])){
@@ -40,13 +59,15 @@
             $companyList = $this->CompanyDAO->GetAll();
             $companyFinded = null;
             foreach($companyList as $company)
-                {
-                    if($name == $company->getName()){
-                        $companyFinded = $company;
-                    }
+            {
+                if($name == $company->getName()){
+                    $companyFinded = $company;
                 }
+            }
             
             require_once(VIEWS_PATH."company-list.php");
+
+            return $companyFinded;
         }        
         public function Add($name, $cuil, $address, $phoneNumber,$email)
         {
