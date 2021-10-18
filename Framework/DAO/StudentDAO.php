@@ -3,6 +3,9 @@
 
     use DAO\IStudentDAO as IStudentDAO;
     use Models\Student as Student;
+    /* require_once('Views\curl.php');
+
+    var_dump($json); */
 
     class StudentDAO implements IStudentDAO
     {
@@ -19,7 +22,7 @@
 
         public function GetAll()
         {
-            $this->RetrieveData();
+            $this->RetrieveDataAPI();
 
             return $this->studentList;
         }
