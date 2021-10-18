@@ -1,6 +1,5 @@
 <?php
     require_once('nav.php');
-    require_once ('curl.php');
 ?>
 <main class="py-5">
      <section id="listado" class="mb-5">
@@ -36,7 +35,7 @@
                          </div>
                          <div class="col-lg-4">
                               <div class="form-group">
-                                   <label for="">dni</label>
+                                   <label for="">DNI</label>
                                    <input type="text" name="dni" value="" class="form-control">
                               </div>
                          </div>
@@ -82,9 +81,9 @@
                               <div class="form-group">
                                    <label for="">Carerra</label>
                                    <select name="career">
-                                        <option>Carrera 1</option>
-                                        <option>Carrera 2</option>
-                                        <option>Carrera 3</option>
+                                        <option>Técnico Universitario en Programación</option>
+                                        <option>Técnico Universitario en Sistemas Informaticos</option>
+                                        <option>Técnico Universitario en Administracion</option>
                                    </select>
                               </div>
                          </div>
