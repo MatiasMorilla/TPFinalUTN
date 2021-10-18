@@ -21,10 +21,27 @@
         public function ShowListView()
         {
             $companyList = $this->CompanyDAO->GetAll();
-
+            $name = null;
             require_once(VIEWS_PATH."company-list.php");
         }
 
+        public function Search(){
+            $name = null;
+            if(isset($_GET["name"])){
+                $name =$_GET["name"];
+            }
+            
+            $companyList = $this->CompanyDAO->GetAll();
+            $companyFinded = null;
+            foreach($companyList as $company)
+                {
+                    if($name == $company->getName()){
+                        $companyFinded = $company;
+                    }
+                }
+            
+            require_once(VIEWS_PATH."company-list.php");
+        }        
         public function Add($name, $cuil, $address, $phoneNumber,$email)
         {
             $company = new Company($name,$cuil,$address,$phoneNumber,$email);
