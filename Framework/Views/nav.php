@@ -14,6 +14,9 @@
           </li>  
           <li class="nav-item">
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowListView">Listar Empresas</a>
-          </li>           
+          </li>  
+          <li class="nav-item">
+               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowDeleteView">Borrar Empresas</a>
+          </li>         
      </ul>
 </nav>

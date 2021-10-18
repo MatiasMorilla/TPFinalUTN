@@ -24,6 +24,29 @@
             return $this->companyList;
         }
 
+        public function RemoveCompany ($cuil)
+        {
+            $arrayCompany = $this->getAll();
+            $key = $this->searchForCuil($cuil,$arrayCompany);
+            if (is_null($key))
+            {
+                echo "Empresa no encontrada";
+            }
+            else{
+                unset($arrayCompany [$key]);
+                echo "Empresa eliminada con éxito.";
+            }
+        }
+
+        private function searchForCuil($cuil, $array) {
+            foreach ($array as $key => $val) {
+                if ($val['cuil'] === $cuil) {
+                    return $key;
+                }
+            }
+            return null;
+         }
+
         private function SaveData()
         {
             $arrayToEncode = array();

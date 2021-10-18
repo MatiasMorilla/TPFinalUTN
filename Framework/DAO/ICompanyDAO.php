@@ -7,5 +7,6 @@
     {
         function Add(Company $company);
         function GetAll();
+        function RemoveCompany($cuil);
     }
 ?>
