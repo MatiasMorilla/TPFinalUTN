@@ -3,6 +3,7 @@
 
     use DAO\StudentDAO as StudentDAO;
     use Models\Student as Student;
+    use Controllers\HomeController as HomeController;
 
     class StudentController
     {
@@ -16,6 +17,11 @@
         public function ShowAddView()
         {
             require_once(VIEWS_PATH."student-add.php");
+        }
+
+        public function ShowLogout()
+        {
+            require_once(VIEWS_PATH."logout.php");
         }
 
         public function ShowListView()
@@ -35,22 +41,50 @@
             $this->ShowAddView();
         }
 
-        public function Search(){
-            $email = null;
-            if(isset($_GET["email"])){
-                $email =$_GET["email"];
-            }
-            
-            $studentList = $this->studentDAO->GetAll();
-            $studentFinded = null;
-            foreach($studentList as $student)
+        public function Search($email, $password){
+
+            if(!empty($email) && !empty($password))
             {
-                if($email == $student->getEmail()){
-                    $studentFinded = $student;
+                $studentList = $this->studentDAO->GetAll();
+                $studentFinded = null;
+                foreach($studentList as $student)
+                {
+                    if($email == $student->getEmail()){
+                        $studentFinded = $student;
+                    }
+                }
+
+                
+
+                if($email === "admin@utn.com")
+                {
+                    if($password === "12345")
+                    {
+                        $email = "admin@utn.com";
+                        $_SESSION["admin"] = $email;
+
+                        require_once(VIEWS_PATH."student-add.php");
+                    }
+                    else
+                    {
+                        $homeController = new HomeController();
+                         $homeController->Index("Los datos son incorrectos!");
+                    }
+                    
+                }
+                else
+                {
+                    $_SESSION["student"] = $studentFinded;
+                
+                    require_once(VIEWS_PATH."student-perfil.php");
                 }
             }
+            else
+            {
+                $homeController = new HomeController();
+                $homeController->Index("Debes completar los datos!");
+            }
             
-            require_once(VIEWS_PATH."student-list.php");
         }     
     }
 ?>
