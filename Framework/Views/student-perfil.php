@@ -8,7 +8,7 @@
 	<div class="row">
            
                             
-                <div class="col-6 ">
+                <div class="col-6" style="margin: auto 0px">
                     <figure class="align-middle">
                     <span class="text-center"><i class="fas fa-user" style="font-size:300px"></i></span>
                     </figure>

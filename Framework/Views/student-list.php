@@ -16,9 +16,6 @@
                          <?php
                               foreach($studentList as $student)
                               {
-
-
-                                   if($email == $student->getEmail()){
                                    ?>
                                         <tr>
                                              <td><?php echo $student->getFileNumber() ?></td>
@@ -26,8 +23,6 @@
                                              <td><?php echo $student->getEmail() ?></td>
                                         </tr>
                                    <?php
-                                   }
-                                   
                               }
 
                          ?> 
