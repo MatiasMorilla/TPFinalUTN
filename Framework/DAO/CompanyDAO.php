@@ -68,29 +68,22 @@
                 }
             }
         }
-
         public function RemoveCompany ($cuil)
         {
-            $arrayCompany =  $this->GetAll();
-            $company = $this->searchForCuil($cuil,$arrayCompany);
-            $index = 0;
+            $this->RetrieveData();
+            $this->companyList;
+
+            $company = $this->searchForCuil($cuil, $this->companyList);
+
             if (is_null($company))
             {
-                echo "Empresa no encontrada";
+                echo "Compania no encontrada";
+            }else
+            {
+                $index = array_search($company, $this->companyList);
+                unset($this->companyList[$index]);
+                $this->SaveData();
             }
-            else{
-                $index = array_search($company, $arrayCompany);
-                array_splice($arrayCompany, $index, 1);
-                echo "Empresa eliminada con éxito.";
-            }
-
-            echo $cuil;
-            var_dump($company);
-            var_dump($arrayCompany);
-            $jsonArray = json_encode($arrayCompany, JSON_PRETTY_PRINT);
-            echo "<br> $jsonArray" ;
-            /* file_put_contents("Data/companies.json", $jsonArray);
-            $this->ShowListView(); */
         }
 
         private function searchForCuil($cuil, $array) {
@@ -101,6 +94,7 @@
             }
             return null;
          }
+         
     }
 ?>
 

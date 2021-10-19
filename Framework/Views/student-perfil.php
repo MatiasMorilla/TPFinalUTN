@@ -8,9 +8,9 @@
 	<div class="row">
            
                             
-                <div class="col-6">
-                    <figure>
-                        <img src="../assets/Globant_.png" alt="" class="img-circle img-responsive" style="width:100%">
+                <div class="col-6 ">
+                    <figure class="align-middle">
+                    <span class="text-center"><i class="fas fa-user" style="font-size:300px"></i></span>
                     </figure>
                 </div>   
                 <div class="col-6" style="box-shadow:5px 5px 5px 5px rgba(0,0,0,0.3); background-color:white;border-radius:10px">

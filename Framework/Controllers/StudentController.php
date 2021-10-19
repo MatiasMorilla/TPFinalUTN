@@ -72,11 +72,16 @@
                     }
                     
                 }
-                else
+                elseif (!is_null($studentFinded))
                 {
+                    $arrayStudents = $this->studentDAO->GetAll();
                     $_SESSION["student"] = $studentFinded;
                 
                     require_once(VIEWS_PATH."student-perfil.php");
+                } else
+                {
+                    $homeController = new HomeController();
+                    $homeController->Index("Los datos ingresados no son validos!");
                 }
             }
             else

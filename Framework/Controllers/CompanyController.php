@@ -86,6 +86,7 @@
         public function RemoveCompany ($cuil)
         {
             $this->CompanyDAO->RemoveCompany($cuil);
+            $this->ShowListView();
         }
     }
 ?>

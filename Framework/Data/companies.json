@@ -1,16 +1,23 @@
 [
     {
-        "name": "globant",
-        "cuil": "1234",
-        "address": "colon 234",
-        "phoneNumber": "12345",
-        "email": "globant@outlook"
+        "name": "Accenture",
+        "cuil": "203215627385",
+        "address": "Independencia 4250",
+        "phoneNumber": "223 626-3600",
+        "email": "accenture@accenture.com"
     },
     {
-        "name": "asdas",
-        "cuil": "12345",
-        "address": "colon 234",
-        "phoneNumber": "12345",
-        "email": "globant@outlook"
+        "name": "Globant",
+        "cuil": "1234",
+        "address": "Colon 2324",
+        "phoneNumber": "02234563728",
+        "email": "globant@globant.com"
+    },
+    {
+        "name": "Patagonian Tech",
+        "cuil": "45678",
+        "address": "Luro 342",
+        "phoneNumber": "0223453617",
+        "email": "patagoniantech@patagonia.com"
     }
 ]
