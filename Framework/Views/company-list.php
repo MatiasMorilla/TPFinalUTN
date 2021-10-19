@@ -55,10 +55,17 @@
                                              <td><?php echo $company->getPhoneNumber() ?></td>
                                              <td><?php echo $company->getEmail() ?></td>
                                              <td>
-                                             <form action="<?php echo FRONT_ROOT ?>Company/ShowCompany" method="GET">
-                                                  <input type="text" name="name" value="<?php echo $company->getName() ?>" style="display:none" />
-                                                  <button class="btn btn-secondary my-2 my-sm-0" type="submit">Mas informacion</button>
-                                             </form>
+                                              <div class="d-flex">
+                                                  <form action="<?php echo FRONT_ROOT ?>Company/ShowCompany" method="GET">
+                                                       <input type="text" name="name" value="<?php echo $company->getName() ?>" style="display:none" />
+                                                       <button class="btn btn-secondary my-2 my-sm-0" type="submit">Mas informacion</button>
+                                                  </form>
+                                                  <form action="<?php echo FRONT_ROOT ?>Company/ShowModify" method="GET">
+                                                       <input type="text" name="name" value="<?php echo $company->getName() ?>" style="display:none" />
+                                                       <button class="btn btn-secondary my-2 my-sm-0 ml-2" type="submit">Modificar</button>
+                                                  </form>
+                                              </div>    
+                                             
                                              </td>
                                         </tr>
                                    <?php
@@ -71,10 +78,16 @@
                                              <td><?php echo $company->getPhoneNumber() ?></td>
                                              <td><?php echo $company->getEmail() ?></td>
                                              <td>
-                                             <form action="<?php echo FRONT_ROOT ?>Company/ShowCompany" method="GET">
-                                                  <input type="text" name="name" value="<?php echo $company->getName() ?>" style="display:none"/>
-                                                  <button class="btn btn-secondary my-2 my-sm-0" type="submit">Mas informacion</button>
-                                             </form>
+                                             <div class="d-flex">
+                                                  <form action="<?php echo FRONT_ROOT ?>Company/ShowCompany" method="GET">
+                                                       <input type="text" name="name" value="<?php echo $company->getName() ?>" style="display:none" />
+                                                       <button class="btn btn-secondary my-2 my-sm-0" type="submit">Mas informacion</button>
+                                                  </form>
+                                                  <form action="<?php echo FRONT_ROOT ?>Company/ShowModify" method="GET">
+                                                       <input type="text" name="name" value="<?php echo $company->getName() ?>" style="display:none" />
+                                                       <button class="btn btn-secondary my-2 my-sm-0 ml-2" type="submit">Modificar</button>
+                                                  </form>
+                                              </div>  
                                              </td>
                                         </tr>
                                    <?php

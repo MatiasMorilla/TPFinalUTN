@@ -30,6 +30,11 @@
             require_once(VIEWS_PATH."company-remove.php");
         }
 
+        public function ShowModify($name)
+        {
+            require_once(VIEWS_PATH."company-modify.php");
+        }
+
         public function ShowCompany(){
             $name = null;
             if(isset($_GET["name"])){
@@ -86,6 +91,12 @@
         public function RemoveCompany ($cuil)
         {
             $this->CompanyDAO->RemoveCompany($cuil);
+            $this->ShowListView();
+        }
+
+        public function ModifyCompany($name, $attr, $newValue)
+        {
+            $this->CompanyDAO->ModifyCompany($name, $attr, $newValue);
             $this->ShowListView();
         }
     }

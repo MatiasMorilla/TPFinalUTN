@@ -95,6 +95,39 @@
             return null;
          }
          
+         public function modifyCompany($name, $attr, $newValue)
+         {           
+            $this->RetrieveData();
+            $companyFinded = null;
+            foreach($this->companyList as $company)
+            {
+                if($name == $company->getName()){
+                    $companyFinded = $company;
+                }
+            }
+
+            if(!is_null($companyFinded))
+            {
+                if($attr === "name")
+                {
+                    $companyFinded->setName($newValue);
+                }
+                elseif($attr === "address")
+                {
+                    $companyFinded->setAddress($newValue);
+                }
+                elseif($attr === "phoneNumber")
+                {
+                    $companyFinded->setPhoneNumber($newValue);
+                }
+                elseif($attr === "email")
+                {
+                    $companyFinded->setEmail($newValue);
+                }
+                
+                $this->SaveData();
+            }
+         }
     }
 ?>
 

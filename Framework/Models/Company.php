@@ -78,6 +78,42 @@
         {
                 return $this->email;
         }
+
+        /**
+         * Set the value of phoneNumber
+         *
+         * @return  self
+         */ 
+        public function setPhoneNumber($phoneNumber)
+        {
+                $this->phoneNumber = $phoneNumber;
+
+                return $this;
+        }
+
+        /**
+         * Set the value of email
+         *
+         * @return  self
+         */ 
+        public function setEmail($email)
+        {
+                $this->email = $email;
+
+                return $this;
+        }
+
+        /**
+         * Set the value of address
+         *
+         * @return  self
+         */ 
+        public function setAddress($address)
+        {
+                $this->address = $address;
+
+                return $this;
+        }
     }
 
 ?>
