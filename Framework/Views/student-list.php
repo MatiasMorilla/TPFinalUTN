@@ -9,7 +9,7 @@
                     <form action="<?php echo FRONT_ROOT ?>Student/Search" method="GET">
                          <div class="row" style="float:right">
                               <div class="col-9">
-                                   <input class="form-control mr-sm-2" name="email" type="search" placeholder="Nombre de la empresa" aria-label="Search" >
+                                   <input class="form-control mr-sm-2" name="email" type="search" placeholder="Email alumno" aria-label="Search" >
                               </div>
                               <div class="col-3" >
                                    <button class="btn btn-secondary my-2 my-sm-0" type="submit" >Buscar</button>

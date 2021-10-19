@@ -55,7 +55,7 @@
                                              <td><?php echo $company->getEmail() ?></td>
                                              <td>
                                              <form action="<?php echo FRONT_ROOT ?>Company/ShowCompany" method="GET">
-                                                  <input type="text" name="name" value="<?php echo $company->getName() ?>" />
+                                                  <input type="text" name="name" value="<?php echo $company->getName() ?>"  />
                                                   <button class="btn btn-secondary my-2 my-sm-0" type="submit">Mas informacion</button>
                                              </form>
                                              </td>
