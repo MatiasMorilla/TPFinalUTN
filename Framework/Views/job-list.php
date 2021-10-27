@@ -7,7 +7,7 @@
           <div class="container">
                <div class="row">
                     <div class="col-4">
-                         <h2 class="mb-4">Listado de empresas</h2>
+                         <h2 class="mb-4">Listado de empleos</h2>
                     </div>
                     <div class="col">
                          <div class="row">
