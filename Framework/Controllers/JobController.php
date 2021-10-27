@@ -44,8 +44,9 @@
             require_once(VIEWS_PATH."job-list.php");
         }
 
-        public function ShowModify($name)
+        public function ShowModify($id_position)
         {
+            $job = $this->JobDAO->getJobByIdPosition($id_position);
             require_once(VIEWS_PATH."job-modify.php");
         }
             
@@ -60,6 +61,15 @@
             $this->JobDAO->Add($job);
             
             $this->ShowAddView();
+        }
+
+        public function ShowRemove()
+        {
+            $jobList = $this->JobDAO->GetAll();
+            $CompanyDAO = new CompanyDAO();
+            $companyList = $CompanyDAO->GetAll();
+                        
+            require_once(VIEWS_PATH."job-remove.php");
         }
         
         public function getIdPosition($position)
@@ -116,6 +126,18 @@
             }
 
             return $id_career;
+        }
+
+        public function ModifyJob($id_position, $attr, $newValue)
+        {
+            $this->JobDAO->ModifyJob($id_position, $attr, $newValue);
+            $this->ShowListView();
+        }
+
+        public function RemoveJob($company, $position)
+        {
+            $this->JobDAO->RemoveJob($company, $position);
+            $this->ShowListView();
         }
     }
 ?>

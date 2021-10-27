@@ -1,22 +1,22 @@
 [
     {
         "id_position": 1,
-        "id_career": 2,
+        "id_career": 1,
         "company": "Accenture",
-        "position": "Jr developer with Java Springboot, Git, MySQL technologies for booming fintech.",
-        "description": "Desarrollador Java que ayudara a la empresa a crear y mantener app",
-        "requirements": "Se necesita desarrollador Java con experienca mayor a 3 a\u00f1os, conocimentos en Springboot, maneje a la perfeccion Git y sea un master",
-        "benefits": "Trabajo remoto, salario en US, caramelos todos los dias",
-        "date": "2021-10-08"
+        "position": "Jr naval engineer",
+        "description": "jr naval engineer",
+        "requirements": "estar cursando la carrera",
+        "benefits": "Sueldo en pesos",
+        "date": "2021-10-22"
     },
     {
-        "id_position": 2,
-        "id_career": 1,
+        "id_position": 8,
+        "id_career": 3,
         "company": "Globant",
-        "position": "Computer security specialist with knowledge in ethical hacking and studies in related careers.",
-        "description": "Hackearas a la nasa",
-        "requirements": "5 a\u00f1os hackeando ",
-        "benefits": "Vas a ser un crack",
+        "position": "PHP Jr developer",
+        "description": "Desarrollaras junto a un equipo un ecommerce",
+        "requirements": "Dos a\u00f1os de experiencia en php",
+        "benefits": "Seguro Osde ",
         "date": "2021-10-16"
     }
 ]

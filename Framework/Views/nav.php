@@ -39,7 +39,10 @@
                          </li>    
                          <li class="nav-item">
                               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Job/ShowListView">Listar Empleos</a>
-                         </li>    
+                         </li>   
+                         <li class="nav-item">
+                              <a class="nav-link" href="<?php echo FRONT_ROOT ?>Job/ShowRemove">Eliminar Empleo</a>
+                         </li>  
                          <li class="nav-item">
                               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Student/ShowLogout">Log out</a>
                          </li>

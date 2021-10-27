@@ -5,7 +5,7 @@
 <main class="py-5">
      <section id="listado" class="mb-5">
           <div class="container">
-               <!-- <div class="row">
+               <div class="row">
                     <div class="col-4">
                          <h2 class="mb-4">Listado de empresas</h2>
                     </div>
@@ -30,7 +30,7 @@
                               </div>
                          </div>   
                     </div>
-               </div> -->
+               </div>
                
                
                <table class="table bg-light-alpha">
@@ -62,7 +62,7 @@
                                                        {
                                                             ?>
                                                                  <form action="<?php echo FRONT_ROOT ?>Job/ShowModify" method="GET">
-                                                                      <input type="text" name="name" value="<?php echo $job->getPosition() ?>" style="display:none" />
+                                                                      <input type="text" name="id_position" value="<?php echo $job->getId_position() ?>" style="display:none" />
                                                                       <button class="btn btn-secondary my-2 my-sm-0 ml-2" type="submit">Modificar</button>
                                                                  </form>
                                                             <?php
@@ -89,7 +89,7 @@
                                                     {
                                                         ?>
                                                                 <form action="<?php echo FRONT_ROOT ?>Job/ShowModify" method="GET">
-                                                                    <input type="text" name="name" value="<?php echo $job->getPosition() ?>" style="display:none" />
+                                                                    <input type="text" name="id_position" value="<?php echo $job->getId_position() ?>" style="display:none" />
                                                                     <button class="btn btn-secondary my-2 my-sm-0 ml-2" type="submit">Modificar</button>
                                                                 </form>
                                                         <?php

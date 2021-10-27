@@ -75,6 +75,86 @@
                 }
             }
         }
+
+        public function ModifyJob($id_position, $attr, $newValue)
+        {
+            $this->RetrieveData();
+            $jobFinded = $this->getJobByIdPosition($id_position);
+
+            if($jobFinded != null)
+            {
+                if($attr == "position")
+                {
+                    $jobFinded->setPosition($newValue);
+                }
+                elseif($attr == "description")
+                {
+                    $jobFinded->setDescription($newValue);
+                }
+                elseif($attr == "requirements")
+                {
+                    $jobFinded->setRequirements($newValue);
+                }
+                elseif($attr == "benefits")
+                {
+                    $jobFinded->setBenefits($newValue);
+                }
+                elseif($attr == "date")
+                {
+                    $jobFinded->setDate($newValue);
+                }
+            }
+
+            $this->SaveData();
+        }
+
+
+        public function getJobByIdPosition($id_position)
+        {
+            $jobFinded = null;
+            $this->RetrieveData();
+            foreach($this->jobList as $job)
+            {
+                if($id_position == $job->getId_position())
+                {
+                    $jobFinded = $job;
+                }
+            }
+
+            return $jobFinded;
+        }
+
+        public function RemoveJob ($company, $position)
+        {
+            $this->RetrieveData();
+
+            $job = $this->getJobByPositionCompany($company, $position);
+
+            if (is_null($job))
+            {
+                echo "Empleo no encontrado";
+            }else
+            {
+                $index = array_search($job, $this->jobList);
+                unset($this->jobList[$index]);
+                $this->SaveData();
+            }
+        }
+
+        public function getJobByPositionCompany($company, $position)
+        {
+            $jobFinded = null;
+            $this->RetrieveData();
+            foreach($this->jobList as $job)
+            {
+                if($position == $job->getPosition() && $company == $job->getCompany())
+                {
+                    $jobFinded = $job;
+                }
+            }
+
+            return $jobFinded;
+        }
         
     }
 ?>
