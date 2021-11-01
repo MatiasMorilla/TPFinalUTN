@@ -1,0 +1,22 @@
+[
+    {
+        "id_position": 1,
+        "id_career": 1,
+        "company": "Accenture",
+        "position": "Jr naval engineer",
+        "description": "jr naval engineer",
+        "requirements": "estar cursando la carrera",
+        "benefits": "Sueldo en pesos",
+        "date": "2021-10-22"
+    },
+    {
+        "id_position": 8,
+        "id_career": 3,
+        "company": "Globant",
+        "position": "PHP Jr developer",
+        "description": "Desarrollaras junto a un equipo un ecommerce",
+        "requirements": "Dos a\u00f1os de experiencia en php",
+        "benefits": "Seguro Osde ",
+        "date": "2021-10-16"
+    }
+]
