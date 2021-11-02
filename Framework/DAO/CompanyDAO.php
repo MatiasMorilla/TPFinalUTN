@@ -3,10 +3,98 @@
 
     use DAO\ICompanyDao as ICompanyDAO;
     use Models\Company as Company;
+    use DAO\Connection as Connection;
+    use \Exception as Exception;
 
     class CompanyDAO implements ICompanyDAO
     {
-        private $companyList = array();
+        private $connection;
+        private $tableName = "COMPANIES";
+
+        public function Add(Company $company)
+        {
+            try
+            {
+                $sql = "INSERT INTO $this->tableName (CompanyName, Cuil, Address, PhoneNumber, Email) 
+                        VALUES (:CompanyName, :Cuil, :Address, :PhoneNumber, :Email)";
+                        
+                $parameters["CompanyName"] = $company->getName();
+                $parameters["Cuil"] = $company->getCuil();
+                $parameters["Address"] = $company->getAddress();
+                $parameters["PhoneNumber"] = $company->getPhoneNumber();
+                $parameters["Email"] = $company->getEmail();
+
+                $this->connection = Connection::GetInstance();
+
+                $this->connection->ExecuteNonQuery($sql, $parameters);
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
+        public function GetAll()
+        {
+            try
+            {
+                $companyList = array();
+                $sql = "SELECT * FROM $this->tableName";
+
+                $this->connection = Connection::GetInstance();
+                $arrayResult = $this->connection->Execute($sql);
+
+                foreach($arrayResult as $row)
+                {
+                    $company = new Company($row["CompanyName"], $row["Cuil"], $row["Address"], $row["PhoneNumber"], $row["Email"]);
+                    array_push($companyList, $company);
+                }
+
+                return $companyList;
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
+        public function RemoveCompany ($cuil)
+        {
+            try
+            {
+                $sql = "DELETE FROM $this->tableName WHERE $this->tableName.Cuil = $cuil";
+
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery($sql);
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
+        public function modifyCompany($name, $attr, $newValue)
+        {           
+            try
+            {
+                $sql = "UPDATE $this->tableName SET $attr = $newValue WHERE $this->tableName.CompanyName = $name";
+
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery($sql);
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
+
+
+
+
+
+
+        /* private $companyList = array();
 
         public function Add(Company $company)
         {
@@ -127,7 +215,7 @@
                 
                 $this->SaveData();
             }
-         }
+         } */
     }
 ?>
 

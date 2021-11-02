@@ -1,28 +1,20 @@
 CREATE DATABASE TPFINAL;
 USE TPFINAL;
 
-CREATE TABLE BENEFITS(
-	IdBenefit INT AUTO_INCREMENT,
-    DescriptionBenefit varchar(300) NOT NULL,
-    CONSTRAINT pk_Benefit primary key (IdBenefit)
-);
-
-CREATE TABLE REQUIREMENTS(
-	IdRequirement INT AUTO_INCREMENT,
-    DescriptionRequirement VARCHAR(300) NOT NULL,
-    CONSTRAINT pk_Requirement primary key (IdRequirement)
-);
-
 CREATE TABLE COMPANIES(
-	IdCompany INT AUTO_INCREMENT,
     CompanyName VARCHAR(40) NOT NULL,
     Cuil INT NOT NULL ,
     Address VARCHAR(50) NOT NULL,
     PhoneNumber VARCHAR(30) NOT NULL,
     Email VARCHAR(50) NOT NULL ,
-    CONSTRAINT pk_Company primary key (IdCompany),
+    CONSTRAINT pk_Company primary key (CompanyName),
     CONSTRAINT UNQ_Cuil_Email UNIQUE(Cuil,Email)
 );
+
+insert into COMPANIES value("Accenture", 123456, "Inependencia 4300", "22354678", "accenture@accenture.com");
+select * from COMPANIES;
+
+drop table COMPANIES;
 
 CREATE TABLE CAREERS(
 	IdCareer INT NOT NULL,
@@ -41,34 +33,20 @@ CREATE TABLE JOBS(
 	IdJobOffer INT NOT NULL auto_increment,
 	IdPosition INT NOT NULL,
     IdCareer INT NOT NULL,
-    IdCompany INT NOT NULL,
+    NameCompany VARCHAR(40) NOT NULL,
     JobPosition VARCHAR(30),
     JobDescription VARCHAR(300),
-    JobDate DATETIME,
+    JobBenefits VARCHAR(300),
+    JobRequirements VARCHAR(300),
+    JobDate DATE,
     CONSTRAINT pk_Job primary key (IdJobOffer),
-    CONSTRAINT fk_Position FOREIGN KEY (IdPosition) references POSITIONS (IdPosition),
-    CONSTRAINT fk_Career FOREIGN KEY (IdCareer) references CAREERS (IdCareer),
-    CONSTRAINT fk_Company FOREIGN KEY (IdCompany) references COMPANIES (IdCompany)
+    CONSTRAINT fk_Company FOREIGN KEY (NameCompany) references COMPANIES (CompanyName)
 );
 
 drop table JOBS;
 
-CREATE TABLE BENEFITS_X_JOBS(
-	IdBenefit INT NOT NULL,
-    IdJobOffer INT NOT NULL,
-	CONSTRAINT fk_Benefit FOREIGN KEY (IdBenefit) references BENEFITS (IdBenefit),
-    CONSTRAINT fk_Job FOREIGN KEY (IdJobOffer) references JOBS (IdJobOffer),
-    CONSTRAINT pk_Benefit_Position primary key (IdJobOffer,IdBenefit)
-);
 
-CREATE TABLE REQUIREMENTS_X_JOBS(
-	IdRequirement INT NOT NULL,
-    IdJobOffer INT NOT NULL,
-	CONSTRAINT fk_Requirement FOREIGN KEY (IdRequirement) references REQUIREMENTS (IdRequirement),
-    CONSTRAINT fk_Job_requirements FOREIGN KEY (IdJobOffer) references JOBS (IdJobOffer),
-    CONSTRAINT pk_Requirement_Position primary key (IdJobOffer,IdRequirement)
-);
-
+drop table REQUIREMENTS;
 
 CREATE TABLE STUDENTS(
 	Dni INT,
@@ -86,7 +64,7 @@ CREATE TABLE STUDENTS(
     CONSTRAINT UNQ_Dni UNIQUE(Dni)
 );
 
-drop table STUDENTS;
+
 
 CREATE TABLE STUDENT_X_CAREER(
 	IdStudent INT NOT NULL,
@@ -107,3 +85,5 @@ CREATE TABLE APLICANTS(
 	CONSTRAINT fk_IdJobOffer_ap foreign key(IdJobOffer) references JOBS(IdJobOffer)
 );
 
+show tables;
+drop table APLICANTS;
