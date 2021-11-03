@@ -2,8 +2,6 @@
     namespace DAO;
 
     use DAO\IJobDAO as IJobDAO;
-    use DAO\Connection as Connection;
-    use \Exception as Exception;
     use Models\Job as Job;
     
 
@@ -61,7 +59,51 @@
                 throw $ex;
             }
         }
+
+        public function getJobByIdPosition($id_position)
+        {
+            try
+            {
+                $jobList = array();
+                $sql = "SELECT * FROM $this->tableName WHERE $this->tableName.IdPosition = $id_position";
+
+                $this->connection = Connection::GetInstance();
+                $arrayResult = $this->connection->Execute($sql);
+
+                foreach($arrayResult as $row)
+                {
+                    $job = new Job($row["IdPosition"], $row["IdCareer"], $row["NameCompany"], $row["JobPosition"], $row["JobDescription"], $row["JobBenefits"], $row["JobRequirements"], $row["JobDate"]);
+                    array_push($jobList, $job);
+                }
+
+                return $jobList[0];
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
+        public function ModifyJob($id_position, $attr, $newValue)
+        {
+            try
+            {
+                $sql = "UPDATE $this->tableName SET $attr = '" . $newValue . "' WHERE $this->tableName.IdPosition = $id_position";                  
+
+                $this->connection = Connection::GetInstance();
+
+                $this->connection->ExecuteNonQuery($sql);
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
     }
+
+
+    
 
     /*  public function Add(Job $job)
         {

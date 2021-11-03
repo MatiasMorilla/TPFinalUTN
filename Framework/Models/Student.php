@@ -8,16 +8,14 @@
         private $fileNumber;
         private $studyStatus;
         private $career;
-        private $idStudent;
 
-       public function __construct($email, $password, $name, $lastName, $dni, $gender, $birthDate, $phoneNumber, $fileNumber, $studyStatus, $career, $idStudent)
+       public function __construct($email, $name, $lastName, $dni, $gender, $birthDate, $phoneNumber, $fileNumber, $studyStatus, $career)
         {
-            parent::__construct($email, $password, $name, $lastName, $dni, $gender, $birthDate, $phoneNumber);
+            parent::__construct($email, $name, $lastName, $dni, $gender, $birthDate, $phoneNumber);
             $this->fileNumber = $fileNumber;
             $this->studyStatus = $studyStatus;
             $this->career = $career;
             $this->idStudent = 0;
-            /* $this->idStudent = $idStudent;  */
         }
  
         /**

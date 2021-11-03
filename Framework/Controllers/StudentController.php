@@ -32,9 +32,9 @@
             require_once(VIEWS_PATH."student-list.php");
         }
 
-        public function Add($email, $password, $name, $lastName, $dni, $gender, $birthDate, $phoneNumber, $fileNumber, $studyStatus, $career, $idStudent)
+        public function Add($email, $name, $lastName, $dni, $gender, $birthDate, $phoneNumber, $fileNumber, $studyStatus, $career)
         {
-            $student = new Student($email, $password, $name, $lastName, $dni, $gender, $birthDate, $phoneNumber, $fileNumber, $studyStatus, $career, $idStudent);
+            $student = new Student($email, $name, $lastName, $dni, $gender, $birthDate, $phoneNumber, $fileNumber, $studyStatus, $career);
 
             $this->studentDAO->Add($student);
 
@@ -42,7 +42,6 @@
         }
 
         public function Search($email, $password){
-
             if(!empty($email) && !empty($password))
             {
                 $studentList = $this->studentDAO->GetAll();
@@ -55,6 +54,7 @@
                 }
 
                 
+                $homeController = new HomeController();
 
                 if($email === "admin@utn.com")
                 {
@@ -67,7 +67,6 @@
                     }
                     else
                     {
-                        $homeController = new HomeController();
                          $homeController->Index("Los datos son incorrectos!");
                     }
                     
@@ -80,16 +79,53 @@
                     require_once(VIEWS_PATH."student-perfil.php");
                 } else
                 {
-                    $homeController = new HomeController();
                     $homeController->Index("Los datos ingresados no son validos!");
                 }
             }
             else
             {
-                $homeController = new HomeController();
+                
                 $homeController->Index("Debes completar los datos!");
             }
             
+        }     
+
+        public function Search132($email){
+            if(!empty($email))
+            {
+                $studentList = $this->studentDAO->GetAll();
+                $studentFinded = null;
+                foreach($studentList as $student)
+                {
+                    if($email == $student->getEmail()){
+                        $studentFinded = $student;
+                    }
+                }
+                
+                $homeController = new HomeController();
+
+                if(is_null($studentFinded))
+                {
+                    $homeController->Index("El email no es valido!");
+                }
+                elseif($email == "admin@utn.com")
+                {
+                    require_once(VIEWS_PATH."login.php");
+                }
+                else
+                {
+                    $student = $this->studentDAO->GetStudentByEmail();
+
+                    if(!empty($student))
+                    {
+                        require_once(VIEWS_PATH."login.php");
+                    }
+                    elseif()
+                    {
+                        /// completrar
+                    }
+                }
+            }
         }     
     }
 ?>

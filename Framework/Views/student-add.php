@@ -16,12 +16,6 @@
                          </div>
                          <div class="col-lg-4">
                               <div class="form-group">
-                                   <label for="">Password</label>
-                                   <input type="password" name="password" value="" class="form-control">
-                              </div>
-                         </div>
-                         <div class="col-lg-4">
-                              <div class="form-group">
                                    <label for="">Nombre</label>
                                    <input type="text" name="name" value="" class="form-control">
                               </div>
@@ -89,7 +83,7 @@
                               </div>
                          </div>
                     </div>
-                    <button type="submit" name="button" class="btn btn-dark ml-auto d-block">Agregar</button>
+                    <button type="submit" class="btn btn-dark ml-auto d-block">Agregar</button>
                </form>
           </div>
      </section>

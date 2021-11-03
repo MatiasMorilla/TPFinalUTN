@@ -49,30 +49,32 @@ drop table JOBS;
 drop table REQUIREMENTS;
 
 CREATE TABLE STUDENTS(
-	Dni INT,
-    FileNumber INT,
-    StudyStatus VARCHAR(20) NOT NULL,
-    StudentEmail VARCHAR(40) NOT NULL,
-    StudentPassword VARCHAR(40) NOT NULL,
-    FirstName VARCHAR(40) NOT NULL,
-    LastName VARCHAR(40) NOT NULL,
-    Gender VARCHAR(20) NOT NULL,
-    BirthDate DATETIME NOT NULL,
-    PhoneNumber VARCHAR(30) NOT NULL,
-    CONSTRAINT pk_STUDENT primary key (FileNumber),
-    CONSTRAINT UNQ_StudentEmail UNIQUE(StudentEmail),
-    CONSTRAINT UNQ_Dni UNIQUE(Dni)
+	dni INT,
+    fileNumber INT,
+    studyStatus VARCHAR(20) NOT NULL,
+    email VARCHAR(40) NOT NULL,
+    password VARCHAR(40) NOT NULL,
+    name VARCHAR(40) NOT NULL,
+    lastName VARCHAR(40) NOT NULL,
+    gender VARCHAR(20) NOT NULL,
+    birthDate DATETIME NOT NULL,
+    phoneNumber VARCHAR(30) NOT NULL,
+    career varchar(50) NOT NULL,
+    CONSTRAINT pk_STUDENT primary key (fileNumber),
+    CONSTRAINT UNQ_StudentEmail UNIQUE(email),
+    CONSTRAINT UNQ_Dni UNIQUE(dni)
 );
 
 
+drop table STUDENTS;
 
-CREATE TABLE STUDENT_X_CAREER(
+/*CREATE TABLE STUDENT_X_CAREER(
 	IdStudent INT NOT NULL,
     IdCareer INT NOT NULL,
 	CONSTRAINT fk_IdCareer_X_Student FOREIGN KEY (IdCareer) references CAREERS (IdCareer),
 	CONSTRAINT fk_IdStudent_X_Career FOREIGN KEY (IdStudent) references STUDENTS (FileNumber),
     CONSTRAINT pk_Student_X_Career primary key (IdStudent,IdCareer)
-);
+);*/
 
 CREATE TABLE APLICANTS(
 	IdStudent INT NOT NULL,
@@ -87,3 +89,9 @@ CREATE TABLE APLICANTS(
 
 show tables;
 drop table APLICANTS;
+
+select * from COMPANIES where COMPANIES.CompanyName = "Accenture";
+update COMPANIES SET PhoneNumber = "2235024545" where COMPANIES.CompanyName = "Globant";
+
+
+UPDATE JOBS SET JobDescription = "no vas a hcer nada" WHERE JOBS.IdPosition = 5;

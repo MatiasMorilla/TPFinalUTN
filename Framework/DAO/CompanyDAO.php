@@ -77,7 +77,7 @@
         {           
             try
             {
-                $sql = "UPDATE $this->tableName SET $attr = $newValue WHERE $this->tableName.CompanyName = $name";
+                $sql = "UPDATE $this->tableName SET $attr = '" . $newValue . "' WHERE $this->tableName.CompanyName = '" . $name . "'";
 
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($sql);
