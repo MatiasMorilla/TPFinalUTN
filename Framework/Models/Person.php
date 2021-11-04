@@ -4,7 +4,7 @@
     class  Person
     {
         private $email;
-        private $password='12345';
+        private $password;
         private $name;
         private $lastName;
         private $dni;
@@ -12,9 +12,10 @@
         private $birthDate;
         private $phoneNumber;
 
-        public function __construct($email, $name, $lastName, $dni, $gender, $birthDate, $phoneNumber)
+        public function __construct($email, $password,  $name, $lastName, $dni, $gender, $birthDate, $phoneNumber)
         {
             $this->email = $email;
+            $this->password = $password;
             $this->name = $name;
             $this->lastName = $lastName;
             $this->dni = $dni;

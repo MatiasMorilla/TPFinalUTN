@@ -49,15 +49,15 @@ drop table JOBS;
 drop table REQUIREMENTS;
 
 CREATE TABLE STUDENTS(
-	dni INT,
-    fileNumber INT,
+	dni varchar(50) NOT NULL,
+    fileNumber varchar(50),
     studyStatus VARCHAR(20) NOT NULL,
     email VARCHAR(40) NOT NULL,
     password VARCHAR(40) NOT NULL,
     name VARCHAR(40) NOT NULL,
     lastName VARCHAR(40) NOT NULL,
     gender VARCHAR(20) NOT NULL,
-    birthDate DATETIME NOT NULL,
+    birthDate DATE NOT NULL,
     phoneNumber VARCHAR(30) NOT NULL,
     career varchar(50) NOT NULL,
     CONSTRAINT pk_STUDENT primary key (fileNumber),
@@ -77,13 +77,13 @@ drop table STUDENTS;
 );*/
 
 CREATE TABLE APLICANTS(
-	IdStudent INT NOT NULL,
+	IdStudent varchar(50) NOT NULL,
     IdJobOffer INT NOT NULL,
     CV MEDIUMBLOB NOT NULL,
     AplicantDescription varchar(300) NOT NULL,
-    AplicantDate datetime NOT NULL,
+    AplicantDate date NOT NULL,
     CONSTRAINT pk_IdStudent_IdJobOffer primary key(IdStudent, IdJobOffer),
-    CONSTRAINT fk_IdStudent_ap foreign key(IdStudent) references STUDENTS(FileNumber),
+    CONSTRAINT fk_IdStudent_ap foreign key(IdStudent) references STUDENTS(fileNumber),
 	CONSTRAINT fk_IdJobOffer_ap foreign key(IdJobOffer) references JOBS(IdJobOffer)
 );
 
@@ -93,5 +93,8 @@ drop table APLICANTS;
 select * from COMPANIES where COMPANIES.CompanyName = "Accenture";
 update COMPANIES SET PhoneNumber = "2235024545" where COMPANIES.CompanyName = "Globant";
 
-
 UPDATE JOBS SET JobDescription = "no vas a hcer nada" WHERE JOBS.IdPosition = 5;
+
+select * from STUDENTS;
+
+UPDATE STUDENTS SET password = '123456' WHERE STUDENTS.email = "ddouthwaite0@goo.gl";

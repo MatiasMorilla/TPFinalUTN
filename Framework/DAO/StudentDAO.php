@@ -57,22 +57,53 @@
 
                 $this->connection = Connection::GetInstance();
 
-                $arrayResul = $this->connection->Execute($sql);
-
+                $arrayResult = $this->connection->Execute($sql);
                 foreach($arrayResult as $row)
                 {
-                    $student = new Student($row["email"], $row["password"], $row["name"], $row["lasName"], $row["dni"], $row["gender"],
-                     $row["birthDate"], $row["phoneNumer"], $row["fileNumber"], $row["studyStatus"], $row["career"], );
+                    $student = new Student($row["email"], $row["password"], $row["name"], $row["lastName"], $row["dni"], $row["gender"],
+                     $row["birthDate"], $row["phoneNumber"], $row["fileNumber"], $row["studyStatus"], $row["career"]);
                     array_push($studentList, $student);
                 }
 
-                return $studentList[0];
+                return $studentList;
             }
             catch(Exception $ex)
             {
                 throw $ex;
             }
         }
+
+        public function SetPassword($email, $password)
+        {
+            try
+            {
+                $sql = "UPDATE $this->tableName SET password = '" . $password ."' WHERE $this->tableName.email = '" . $email . "'";                        
+                $this->connection = Connection::GetInstance();
+
+                $this->connection->ExecuteNonQuery($sql);
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
+        public function SearchstudentByEmail($email)
+        {
+            if(!empty($email))
+            {
+                $studentList = $this->GetAll();
+                $studentFinded = null;
+                foreach($studentList as $student)
+                {
+                    if($email == $student->getEmail()){
+                        $studentFinded = $student;
+                    }
+                }
+
+                return $studentFinded;
+            } 
+        }    
 
        /*  private function SaveData()
         {
@@ -165,7 +196,7 @@
                     $career = $parameters["careerId"];
                     $idStudent = $parameters["studentId"];
                     
-                    $student = new Student($email, 1234, $name, $lastName, $dni, $gender, $birthDate, $phoneNumber, $fileNumber, $studyStatus, $career, $idStudent);
+                    $student = new Student($email, 12345, $name, $lastName, $dni, $gender, $birthDate, $phoneNumber, $fileNumber, $studyStatus, $career, $idStudent);
 
                     array_push($this->studentList, $student);
                 }

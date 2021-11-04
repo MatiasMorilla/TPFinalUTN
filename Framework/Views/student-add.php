@@ -12,6 +12,7 @@
                               <div class="form-group">
                                    <label for="">Email</label>
                                    <input type="email" name="email" value="" class="form-control">
+                                   <input type="password" name="password" value="12345" style="display:none">
                               </div>
                          </div>
                          <div class="col-lg-4">

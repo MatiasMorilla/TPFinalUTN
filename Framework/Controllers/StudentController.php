@@ -24,6 +24,12 @@
             require_once(VIEWS_PATH."logout.php");
         }
 
+        public function Showperfil($student)
+        {
+            $studentFinded = $student;
+            require_once(VIEWS_PATH."student-perfil.php");
+        }
+
         public function ShowListView()
         {
             $studentList = $this->studentDAO->GetAll();
@@ -32,9 +38,9 @@
             require_once(VIEWS_PATH."student-list.php");
         }
 
-        public function Add($email, $name, $lastName, $dni, $gender, $birthDate, $phoneNumber, $fileNumber, $studyStatus, $career)
+        public function Add($email, $password,  $name, $lastName, $dni, $gender, $birthDate, $phoneNumber, $fileNumber, $studyStatus, $career)
         {
-            $student = new Student($email, $name, $lastName, $dni, $gender, $birthDate, $phoneNumber, $fileNumber, $studyStatus, $career);
+            $student = new Student($email, $password, $name, $lastName, $dni, $gender, $birthDate, $phoneNumber, $fileNumber, $studyStatus, $career);
 
             $this->studentDAO->Add($student);
 
@@ -42,6 +48,9 @@
         }
 
         public function Search($email, $password){
+
+            $homeController = new HomeController();
+
             if(!empty($email) && !empty($password))
             {
                 $studentList = $this->studentDAO->GetAll();
@@ -53,8 +62,7 @@
                     }
                 }
 
-                
-                $homeController = new HomeController();
+                $studentBD = $this->studentDAO->GetStudentByEmail($email);
 
                 if($email === "admin@utn.com")
                 {
@@ -71,26 +79,38 @@
                     }
                     
                 }
+                elseif(!empty($studentBD))
+                {
+                    if($password == $studentBD[0]->getPassword())
+                    {
+                        $_SESSION["student"] = $studentBD[0];
+                        $this->ShowPerfil($studentBD[0]);
+                    }
+                    else
+                    {
+                        $homeController->Index("Contraseña incorrecta!");
+                    }
+                }
                 elseif (!is_null($studentFinded))
                 {
                     $arrayStudents = $this->studentDAO->GetAll();
                     $_SESSION["student"] = $studentFinded;
                 
-                    require_once(VIEWS_PATH."student-perfil.php");
-                } else
+                    $this->ShowPerfil($studentFinded);
+                } 
+                else
                 {
                     $homeController->Index("Los datos ingresados no son validos!");
                 }
             }
             else
             {
-                
                 $homeController->Index("Debes completar los datos!");
             }
             
         }     
 
-        public function Search132($email){
+        public function LogIn($email){
             if(!empty($email))
             {
                 $studentList = $this->studentDAO->GetAll();
@@ -103,29 +123,52 @@
                 }
                 
                 $homeController = new HomeController();
+                $student = $this->studentDAO->GetStudentByEmail($email);
 
-                if(is_null($studentFinded))
+                if(is_null($studentFinded) && empty($student) && $email != "admin@utn.com")
                 {
                     $homeController->Index("El email no es valido!");
                 }
                 elseif($email == "admin@utn.com")
                 {
-                    require_once(VIEWS_PATH."login.php");
+                    require_once(VIEWS_PATH."login2.php");
                 }
                 else
                 {
-                    $student = $this->studentDAO->GetStudentByEmail();
-
-                    if(!empty($student))
+                    if(empty($student) || $student[0]->getPassword() == "12345")
                     {
-                        require_once(VIEWS_PATH."login.php");
+                        require_once(VIEWS_PATH."singIn.php");
                     }
-                    elseif()
+                    else
                     {
-                        /// completrar
+                        require_once(VIEWS_PATH."login2.php");
                     }
                 }
             }
         }     
+
+        public function CreateStudent($email, $password)
+        {
+            $studentFinded = $this->studentDAO->SearchStudentByEmail($email);
+            $studentBD = $this->studentDAO->GetStudentByEmail($email);
+
+            if(!is_null($studentFinded) || !empty($studentBD))
+            {
+                if(empty($studentBD))
+                {
+                    $this->studentDAO->Add($studentFinded);
+                    $this->studentDAO->SetPassword($email, $password);
+                    $_SESSION["student"] = $studentFinded;
+                    $this->ShowPerfil($studentFinded);
+                }
+                else
+                {
+                    $this->studentDAO->SetPassword($email, $password);
+                    $_SESSION["student"] = $studentBD[0];
+                    $this->ShowPerfil($studentBD[0]);
+                }
+            }
+
+        }
     }
 ?>
