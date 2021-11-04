@@ -12,11 +12,10 @@
                               <div class="form-group">
                                 <input type="text" value="<?php echo $name; ?>" name="name" />
                                     <select name="attr">
-                                        <option value="name">Nombre</option>
-                                        <option value="address">Direccion</option>
-                                        <option value="phoneNumber">Telefono</option>
-                                        <option value="email">Email</option>
-                                        <option>Finalizado</option>
+                                        <option value="CompanyName">Nombre</option>
+                                        <option value="Address">Direccion</option>
+                                        <option value="PhoneNumber">Telefono</option>
+                                        <option value="Email">Email</option>
                                    </select>
 
                                    <input type="text" placeholder="Ingrese el nuevo valor" name="newValue" />

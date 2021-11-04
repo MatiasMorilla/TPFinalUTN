@@ -13,11 +13,11 @@
                                 <h4 style="width: 700px"><?php echo $job->getPosition(); ?></h4>  
                                 <input type="text" value="<?php echo $id_position; ?>" name="id_position" style="display:none" />
                                     <select name="attr">
-                                        <option value="positions">Puesto</option>
-                                        <option value="description">Descripcion</option>
-                                        <option value="requirements">Requisitos</option>
-                                        <option value="benefits">Beneficios</option>
-                                        <option value="date">Fecha</option>
+                                        <option value="JobPosition">Puesto</option>
+                                        <option value="JobDescription">Descripcion</option>
+                                        <option value="JobRequirements">Requisitos</option>
+                                        <option value="JobBenefits">Beneficios</option>
+                                        <option value="JobDate">Fecha</option>
                                    </select>
 
                                    <input type="text" placeholder="Ingrese el nuevo valor" name="newValue" />

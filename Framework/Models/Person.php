@@ -12,7 +12,7 @@
         private $birthDate;
         private $phoneNumber;
 
-        public function __construct($email, $password, $name, $lastName, $dni, $gender, $birthDate, $phoneNumber)
+        public function __construct($email, $password,  $name, $lastName, $dni, $gender, $birthDate, $phoneNumber)
         {
             $this->email = $email;
             $this->password = $password;

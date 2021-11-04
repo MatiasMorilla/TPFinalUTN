@@ -67,6 +67,15 @@
                                                                  </form>
                                                             <?php
                                                        }
+                                                       else
+                                                       {
+                                                            ?>
+                                                                <form action="<?php echo FRONT_ROOT ?>Student/Postualarse" method="GET">
+                                                                    <input type="text" name="id_position" value="<?php echo $job->getId_position() ?>" style="display:none" />
+                                                                    <button class="btn btn-secondary my-2 my-sm-0 ml-2" type="submit">Postularse</button>
+                                                                </form>
+                                                            <?php
+                                                       }
                                                   ?> 
                                               </div> 
                                              </td>
@@ -93,6 +102,15 @@
                                                                     <button class="btn btn-secondary my-2 my-sm-0 ml-2" type="submit">Modificar</button>
                                                                 </form>
                                                         <?php
+                                                    }
+                                                    else
+                                                    {
+                                                         ?>
+                                                                <form action="<?php echo FRONT_ROOT ?>Student/Postualarse" method="GET">
+                                                                    <input type="text" name="id_position" value="<?php echo $job->getId_position() ?>" style="display:none" />
+                                                                    <button class="btn btn-secondary my-2 my-sm-0 ml-2" type="submit">Postularse</button>
+                                                                </form>
+                                                            <?php
                                                     }
                                                 ?> 
                                             </div> 

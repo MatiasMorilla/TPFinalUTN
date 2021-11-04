@@ -7,9 +7,105 @@
 
     class JobDAO implements IJobDAO
     {
-        private $jobList = array();
+        private $connection;
+        private $tableName = "JOBS";
 
         public function Add(Job $job)
+        {
+            try
+            {
+                $sql = "INSERT INTO $this->tableName (IdPosition, IdCareer, NameCompany, JobPosition, JobDescription, JobBenefits, JobRequirements, JobDate) 
+                        VALUES (:IdPosition, :IdCareer, :NameCompany, :JobPosition, :JobDescription, :JobBenefits, :JobRequirements, :JobDate)";
+                        
+                $parameters["IdPosition"] = $job->getId_position();
+                $parameters["IdCareer"] = $job->getId_career();
+                $parameters["NameCompany"] = $job->getCompany();
+                $parameters["JobPosition"] = $job->getPosition();
+                $parameters["JobDescription"] = $job->getDescription();
+                $parameters["JobBenefits"] = $job->getBenefits();
+                $parameters["JobRequirements"] = $job->getRequirements();
+                $parameters["JobDate"] = $job->getDate();
+
+                $this->connection = Connection::GetInstance();
+
+                $this->connection->ExecuteNonQuery($sql, $parameters);
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
+        public function GetAll()
+        {
+            try
+            {
+                $jobList = array();
+                $sql = "SELECT * FROM $this->tableName";
+
+                $this->connection = Connection::GetInstance();
+                $arrayResult = $this->connection->Execute($sql);
+
+                foreach($arrayResult as $row)
+                {
+                    $job = new Job($row["IdPosition"], $row["IdCareer"], $row["NameCompany"], $row["JobPosition"], $row["JobDescription"], $row["JobBenefits"], $row["JobRequirements"], $row["JobDate"]);
+                    array_push($jobList, $job);
+                }
+
+                return $jobList;
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
+        public function getJobByIdPosition($id_position)
+        {
+            try
+            {
+                $jobList = array();
+                $sql = "SELECT * FROM $this->tableName WHERE $this->tableName.IdPosition = $id_position";
+
+                $this->connection = Connection::GetInstance();
+                $arrayResult = $this->connection->Execute($sql);
+
+                foreach($arrayResult as $row)
+                {
+                    $job = new Job($row["IdPosition"], $row["IdCareer"], $row["NameCompany"], $row["JobPosition"], $row["JobDescription"], $row["JobBenefits"], $row["JobRequirements"], $row["JobDate"]);
+                    array_push($jobList, $job);
+                }
+
+                return $jobList[0];
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
+        public function ModifyJob($id_position, $attr, $newValue)
+        {
+            try
+            {
+                $sql = "UPDATE $this->tableName SET $attr = '" . $newValue . "' WHERE $this->tableName.IdPosition = $id_position";                  
+
+                $this->connection = Connection::GetInstance();
+
+                $this->connection->ExecuteNonQuery($sql);
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
+    }
+
+
+    
+
+    /*  public function Add(Job $job)
         {
             $this->RetrieveData();
             
@@ -156,5 +252,8 @@
             return $jobFinded;
         }
         
-    }
+    } */
 ?>
+
+
+

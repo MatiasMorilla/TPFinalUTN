@@ -12,12 +12,7 @@
                               <div class="form-group">
                                    <label for="">Email</label>
                                    <input type="email" name="email" value="" class="form-control">
-                              </div>
-                         </div>
-                         <div class="col-lg-4">
-                              <div class="form-group">
-                                   <label for="">Password</label>
-                                   <input type="password" name="password" value="" class="form-control">
+                                   <input type="password" name="password" value="12345" style="display:none">
                               </div>
                          </div>
                          <div class="col-lg-4">
@@ -89,7 +84,7 @@
                               </div>
                          </div>
                     </div>
-                    <button type="submit" name="button" class="btn btn-dark ml-auto d-block">Agregar</button>
+                    <button type="submit" class="btn btn-dark ml-auto d-block">Agregar</button>
                </form>
           </div>
      </section>

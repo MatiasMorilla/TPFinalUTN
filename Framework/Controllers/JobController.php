@@ -56,9 +56,11 @@
             $id_position = $this->getIdPosition($position);
             $id_career = $this->getIdCareer($position);
             
-            $job = new Job($id_position, $id_career, $company, $position, $description, $requirements, $benefits, $date);
-            
-            $this->JobDAO->Add($job);
+            if($id_position != -1 && $id_career != -1)
+            {
+                $job = new Job($id_position, $id_career, $company, $position, $description, $requirements, $benefits, $date);
+                $this->JobDAO->Add($job);
+            }
             
             $this->ShowAddView();
         }
