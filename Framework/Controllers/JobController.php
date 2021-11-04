@@ -130,15 +130,15 @@
             return $id_career;
         }
 
-        public function ModifyJob($id_position, $attr, $newValue)
+        public function ModifyJob($IdJobOffer, $attr, $newValue)
         {
-            $this->JobDAO->ModifyJob($id_position, $attr, $newValue);
+            $this->JobDAO->ModifyJob($IdJobOffer, $attr, $newValue);
             $this->ShowListView();
         }
 
-        public function RemoveJob($company, $position)
+        public function RemoveJob($IdJobOffer)
         {
-            $this->JobDAO->RemoveJob($company, $position);
+            $this->JobDAO->RemoveJob($IdJobOffer);
             $this->ShowListView();
         }
     }

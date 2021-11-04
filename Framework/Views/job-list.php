@@ -70,9 +70,11 @@
                                                        else
                                                        {
                                                             ?>
-                                                                <form action="<?php echo FRONT_ROOT ?>Student/Postualarse" method="GET">
-                                                                    <input type="text" name="id_position" value="<?php echo $job->getId_position() ?>" style="display:none" />
-                                                                    <button class="btn btn-secondary my-2 my-sm-0 ml-2" type="submit">Postularse</button>
+                                                                <form action="<?php echo FRONT_ROOT ?>Student/ShowApply" method="GET">
+                                                                 <?php $student = $_SESSION["student"] ?>
+                                                                 <input type="text" name="IdJobOffer" value="<?php echo $job->getIdjobOffer() ?>" style="display:none" />
+                                                                 <input type="text" name="fileNumber" value="<?php echo $student->getFileNumber() ?>" style="display:none" />
+                                                                 <button class="btn btn-secondary my-2 my-sm-0 ml-2" type="submit">Postularse</button>
                                                                 </form>
                                                             <?php
                                                        }
@@ -106,9 +108,11 @@
                                                     else
                                                     {
                                                          ?>
-                                                                <form action="<?php echo FRONT_ROOT ?>Student/Postualarse" method="GET">
-                                                                    <input type="text" name="id_position" value="<?php echo $job->getId_position() ?>" style="display:none" />
-                                                                    <button class="btn btn-secondary my-2 my-sm-0 ml-2" type="submit">Postularse</button>
+                                                                <form action="<?php echo FRONT_ROOT ?>Aplicants/ShowApply" method="GET">
+                                                                      <?php $student = $_SESSION["student"] ?>
+                                                                      <input type="text" name="IdJobOffer" value="<?php echo $job->getIdjobOffer() ?>" style="display:none" />
+                                                                      <input type="text" name="fileNumber" value="<?php echo $student->getFileNumber() ?>" style="display:none" />
+                                                                      <button class="btn btn-secondary my-2 my-sm-0 ml-2" type="submit">Postularse</button>
                                                                 </form>
                                                             <?php
                                                     }

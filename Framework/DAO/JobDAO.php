@@ -49,6 +49,7 @@
                 foreach($arrayResult as $row)
                 {
                     $job = new Job($row["IdPosition"], $row["IdCareer"], $row["NameCompany"], $row["JobPosition"], $row["JobDescription"], $row["JobBenefits"], $row["JobRequirements"], $row["JobDate"]);
+                    $job->setIdJobOffer($row["IdJobOffer"]);
                     array_push($jobList, $job);
                 }
 
@@ -73,6 +74,7 @@
                 foreach($arrayResult as $row)
                 {
                     $job = new Job($row["IdPosition"], $row["IdCareer"], $row["NameCompany"], $row["JobPosition"], $row["JobDescription"], $row["JobBenefits"], $row["JobRequirements"], $row["JobDate"]);
+                    $job->setIdJobOffer($row["IdJobOffer"]);
                     array_push($jobList, $job);
                 }
 
@@ -84,11 +86,27 @@
             }
         }
 
-        public function ModifyJob($id_position, $attr, $newValue)
+        public function ModifyJob($IdJobOffer, $attr, $newValue)
         {
             try
             {
-                $sql = "UPDATE $this->tableName SET $attr = '" . $newValue . "' WHERE $this->tableName.IdPosition = $id_position";                  
+                $sql = "UPDATE $this->tableName SET $attr = '" . $newValue . "' WHERE $this->tableName.IdJobOffer = $IdJobOffer";                  
+
+                $this->connection = Connection::GetInstance();
+
+                $this->connection->ExecuteNonQuery($sql);
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
+        public function RemoveJob ($IdJobOffer)
+        {
+            try
+            {
+                $sql = "DELETE FROM $this->tableName WHERE $this->tableName.IdJobOffer = $IdJobOffer";                  
 
                 $this->connection = Connection::GetInstance();
 

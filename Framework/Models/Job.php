@@ -3,6 +3,7 @@
 
     class Job 
     {
+        private $idJobOffer;
         private $id_position;
         private $id_career;
         private $company;
@@ -12,7 +13,7 @@
         private $benefits;
         private $date;
 
-        public function __construct($id_position, $id_career, $company, $position, $description, $requirements, $benefits, $date)
+        public function __construct( $id_position, $id_career, $company, $position, $description, $requirements, $benefits, $date)
         {
             $this->id_position = $id_position;
             $this->id_career = $id_career;
@@ -180,6 +181,26 @@
         public function setDate($date)
         {
                 $this->date = $date;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of idJobOffer
+         */ 
+        public function getIdJobOffer()
+        {
+                return $this->idJobOffer;
+        }
+
+        /**
+         * Set the value of idJobOffer
+         *
+         * @return  self
+         */ 
+        public function setIdJobOffer($idJobOffer)
+        {
+                $this->idJobOffer = $idJobOffer;
 
                 return $this;
         }
