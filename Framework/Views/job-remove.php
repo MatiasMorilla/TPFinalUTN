@@ -9,22 +9,8 @@
                     <h2 class="mb-4">Eliminar Empleo</h2>                      
                     <div class="col-lg-4">
                         <div class="form-group">
-                            <label for="">Empresa</label>
-                            <select name="company">
-                                <?php 
-                                        foreach($companyList as $company)
-                                        {
-                                            $name = $company->getName();
-                                            echo "<option value='$name'> $name </option>";
-                                        }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label for="">Puesto</label>
-                            <input type="text" name="position" value="" class="form-control">
+                            <label for="">Id del empleo</label>
+                            <input type="text" name="IdJobOffer" value="" class="form-control">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-dark ml-auto d-block">Eliminar</button>                        

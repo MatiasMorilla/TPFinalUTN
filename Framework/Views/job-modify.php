@@ -11,7 +11,7 @@
                          <div class="col-lg-4">
                               <div class="form-group">
                                 <h4 style="width: 700px"><?php echo $job->getPosition(); ?></h4>  
-                                <input type="text" value="<?php echo $id_position; ?>" name="id_position" style="display:none" />
+                                <input type="text" value="<?php echo $job->getIdJobOffer(); ?>" name="IdJobOffer" style="display:none" />
                                     <select name="attr">
                                         <option value="JobPosition">Puesto</option>
                                         <option value="JobDescription">Descripcion</option>

@@ -15,18 +15,36 @@
         {
             try
             {
-                $sql = "INSERT INTO $this->tableName (CompanyName, Cuil, Address, PhoneNumber, Email) 
+                $companyList = $this->GetAll();
+                $exist = false;
+
+                foreach($companyList as $comp)
+                {
+                    if($comp->getName() == $company->getName() || $comp->getCuil() == $company->getCuil())
+                    {
+                        $exist = true;
+                    }
+                }
+
+                if(!$exist)
+                {
+                    $sql = "INSERT INTO $this->tableName (CompanyName, Cuil, Address, PhoneNumber, Email) 
                         VALUES (:CompanyName, :Cuil, :Address, :PhoneNumber, :Email)";
                         
-                $parameters["CompanyName"] = $company->getName();
-                $parameters["Cuil"] = $company->getCuil();
-                $parameters["Address"] = $company->getAddress();
-                $parameters["PhoneNumber"] = $company->getPhoneNumber();
-                $parameters["Email"] = $company->getEmail();
+                    $parameters["CompanyName"] = $company->getName();
+                    $parameters["Cuil"] = $company->getCuil();
+                    $parameters["Address"] = $company->getAddress();
+                    $parameters["PhoneNumber"] = $company->getPhoneNumber();
+                    $parameters["Email"] = $company->getEmail();
 
-                $this->connection = Connection::GetInstance();
+                    $this->connection = Connection::GetInstance();
 
-                $this->connection->ExecuteNonQuery($sql, $parameters);
+                    $this->connection->ExecuteNonQuery($sql, $parameters);
+                }
+                else
+                {
+                    echo "<script> if(confirm('El nombre o el cuil de la compania ya existe!'));</script>";
+                }
             }
             catch(Exception $ex)
             {
