@@ -141,5 +141,13 @@
             $this->JobDAO->RemoveJob($IdJobOffer);
             $this->ShowListView();
         }
+
+        public function SearchJob($position)
+        {
+            $jobList = $this->JobDAO->SearchJob($position);
+            $career = null;
+            require_once(VIEWS_PATH."job-list.php");
+        }
+
     }
 ?>

@@ -12,10 +12,10 @@
                     <div class="col">
                          <div class="row">
                               <div class="col-9">
-                                   <form action="<?php echo FRONT_ROOT ?>Company/Search" method="GET">
+                                   <form action="<?php echo FRONT_ROOT ?>Job/SearchJob" method="GET">
                                         <div class="row" style="float:right">
                                              <div class="col-9">
-                                                  <input class="form-control mr-sm-2" type="search" placeholder="Nombre de la empresa" aria-label="Search" name="name" >
+                                                  <input class="form-control mr-sm-2" type="search" placeholder="Ingrese el puesto" aria-label="Search" name="position" >
                                              </div>
                                              <div class="col-3" >
                                                   <button class="btn btn-secondary my-2 my-sm-0" type="submit" >Buscar</button>
@@ -24,7 +24,7 @@
                                    </form>
                               </div>
                               <div class="col">
-                                   <form action="<?php echo FRONT_ROOT ?>Company/ShowListView" method="GET">
+                                   <form action="<?php echo FRONT_ROOT ?>Job/ShowListView" method="GET">
                                         <button class="btn btn-secondary my-2 my-sm-0" type="submit" >Limpiar Filtro</button>
                                    </form>
                               </div>

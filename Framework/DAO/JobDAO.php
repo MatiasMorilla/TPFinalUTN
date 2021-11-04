@@ -120,13 +120,13 @@
             }
         }
 
-        public function SearchJob ($id_position)
+        public function SearchJob ($position)
         {
             try
             {
                 $jobList = array();
                 
-                $sql = "SELECT FROM $this->tableName WHERE $this->tableName.Id_position = $id_position"; 
+                $sql = "SELECT * FROM $this->tableName WHERE $this->tableName.JobPosition = '" . $position . "'";
 
                 $this->connection = Connection::GetInstance();
 
@@ -139,7 +139,7 @@
                     array_push($jobList, $job);
                 }
 
-                return $jobList[0];
+                return $jobList;
             }
             catch(Exception $ex)
             {
