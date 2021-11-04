@@ -3,6 +3,8 @@
 
     use DAO\IJobDAO as IJobDAO;
     use Models\Job as Job;
+    use DAO\Connection as Connection;
+    use \Exception as Exception;
     
 
     class JobDAO implements IJobDAO
@@ -116,6 +118,34 @@
             {
                 throw $ex;
             }
+        }
+
+        public function SearchJob ($id_position)
+        {
+            try
+            {
+                $jobList = array();
+                
+                $sql = "SELECT FROM $this->tableName WHERE $this->tableName.Id_position = $id_position"; 
+
+                $this->connection = Connection::GetInstance();
+
+                $arrayResult = $this->connection->Execute($sql);
+
+                foreach($arrayResult as $row)
+                {
+                    $job = new Job($row["IdPosition"], $row["IdCareer"], $row["NameCompany"], $row["JobPosition"], $row["JobDescription"], $row["JobBenefits"], $row["JobRequirements"], $row["JobDate"]);
+                    $job->setIdJobOffer($row["IdJobOffer"]);
+                    array_push($jobList, $job);
+                }
+
+                return $jobList[0];
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+
         }
 
     }
