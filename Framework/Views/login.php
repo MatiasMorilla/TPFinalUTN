@@ -5,7 +5,7 @@
 <div class="limiter">
 	<div class="container">
 		<div class="">
-			<form action="<?php echo FRONT_ROOT ?>Student/LogIn" method="GET">
+			<form action="<?php echo FRONT_ROOT ?>Student/LogIn" method="POST">
 				<div class="form-group" >
 					<span style="color: red"><?php echo $message ?> <br></span>
 					<label for="exampleInputEmail1">Email address</label>
