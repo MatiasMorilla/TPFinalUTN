@@ -47,7 +47,7 @@
                          <?php
                               foreach($companyList as $company)
                               {
-                                   if($name == $company->getName()){
+                                   if(strcasecmp($name,$company->getName()) == 0){
                                    ?>
                                         <tr>
                                              <td><?php echo $company->getName() ?></td>

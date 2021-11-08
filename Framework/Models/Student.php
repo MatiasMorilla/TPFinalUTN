@@ -62,6 +62,39 @@
          */ 
         public function getCareer()
         {
+                if($this->career == 1)
+                {
+                        $this->career = "Naval engineering";
+                }
+                elseif($this->career == 2)
+                {
+                        $this->career = "Fishing engineering";
+                }
+                elseif($this->career == 3)
+                {
+                        $this->career = "University technician in programming";
+                }
+                elseif($this->career == 4)
+                {
+                        $this->career = "University technician in computer systems";
+                }
+                elseif($this->career == 5)
+                {
+                        $this->career = "University technician in textile production";
+                }
+                elseif($this->career == 6)
+                {
+                        $this->career = "University technician in administration";
+                }
+                elseif($this->career == 7)
+                {
+                        $this->career = "Bachelor in environmental management";
+                }
+                elseif($this->career == 8)
+                {
+                        $this->career = "University technician in environmental procedures and technologies";
+                }
+
                 return $this->career;
         }
 

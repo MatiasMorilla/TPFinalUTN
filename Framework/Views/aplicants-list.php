@@ -7,7 +7,7 @@
           <div class="container">
                <div class="row">
                     <div class="col-4">
-                         <h2 class="mb-4">Listado aplicantes</h2>
+                         <h2 class="mb-4">Listado de postulaciones</h2>
                     </div>
                </div>
                
@@ -32,18 +32,17 @@
                                              <td><?php echo $aplicant->getAplicantDescription() ?></td>
                                              <td><?php echo $aplicant->getAplicantDate() ?></td>
                                              <td>
-                                             <div class="d-flex">
+<!--                                              <div class="d-flex">
                                                   <form action="<?php echo FRONT_ROOT ?>Company/ShowCompany" method="GET">
-                                                       <input type="text" name="name" value="<?php echo $aplicant->getName() ?>" style="display:none" />
                                                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Mas informacion</button>
+                                                       <input type="text" name="name" value="<?php echo $aplicant->getName() ?>" style="display:none" />
                                                   </form>
+                                             </div> -->
                                              </td>
                                         </tr>
                                    <?php
                               }
                          ?>
-
-                         </tr>
                     </tbody>
                </table>
           </div>

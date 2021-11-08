@@ -8,8 +8,8 @@
                <h2 class="mb-4">Postularse</h2>
                <form action="<?php echo FRONT_ROOT ?>Aplicants/Apply" method="post" class="bg-light-alpha p-5">
                     <div class="row">     
-                    <input type="text" name="IdjobOffer" value="<?php echo $IdjobOffer; ?>" class="form-control">
-                    <input type="text" name="fileNumber" value="<?php echo $fileNumber; ?>" class="form-control">                    
+                    <input type="text" name="IdjobOffer" value="<?php echo $IdjobOffer; ?>" class="form-control" style="display:none">
+                    <input type="text" name="fileNumber" value="<?php echo $fileNumber; ?>" class="form-control" style="display:none">                    
                          <div class="col-lg-4">
                               <div class="form-group">
                                    <label for="">Cargar CV</label>
@@ -29,7 +29,7 @@
                               </div>
                          </div>
                     </div>
-                    <button type="submit" class="btn btn-dark ml-auto d-block">Agregar</button>
+                    <button type="submit" class="btn btn-dark ml-auto d-block">Postularme</button>
                </form>
           </div>
      </section>

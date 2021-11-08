@@ -22,7 +22,7 @@
                     <p><strong>Fecha de nacimiento: </strong> <?php echo $studentFinded->getBirthDate() ?>. </p>
                     <p><strong>Numero de telefono: </strong> <?php echo $studentFinded->getPhoneNumber() ?>. </p>
                     <p><strong>Carrera: </strong> <?php echo $studentFinded->getCareer() ?>. </p>
-                    <p><strong>Estado: </strong> <?php echo $studentFinded->getStudyStatus() ?>. </p>
+                    <p><strong>Estado: </strong> <?php echo $studentFinded->getStudyStatus() ? "Activo" : "No activo" ?>. </p>
                 </div> 
 	</div>
 </div>

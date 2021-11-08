@@ -19,9 +19,9 @@
                 $aplicantsList = $this->GetAll();
                 $exist = false;
 
-                foreach($aplicantsList as $aplicant)
+                foreach($aplicantsList as $aplicantBD)
                 {
-                    if($aplicant->getIdStudent() == $aplicants->getIdStudent())
+                    if($aplicantBD->getIdStudent() == $aplicants->getIdStudent() && $aplicantBD->getIdJobOffer() == $aplicants->getIdJobOffer())
                     {
                         $exist = true;
                     }
@@ -41,6 +41,10 @@
                     $this->connection = Connection::GetInstance();
 
                     $this->connection->ExecuteNonQuery($sql, $parameters);
+                }
+                else
+                {
+                    echo "<script> if(confirm('Ya se a postulado a una oferta!'));</script>";
                 }
                 
             }
@@ -62,8 +66,32 @@
 
                 foreach($arrayResult as $row)
                 {
-                    $aplicant = new Aplicants($row["IdStudent"], $row["IdJobOffer"], $row["CV"], $row["AplicantDescription"], $row["AplicantDate"]);
-                    array_push($aplicantsList, $aplicant);
+                    $aplicantBD = new Aplicants($row["IdStudent"], $row["IdJobOffer"], $row["CV"], $row["AplicantDescription"], $row["AplicantDate"]);
+                    array_push($aplicantsList, $aplicantBD);
+                }
+
+                return $aplicantsList;
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
+        public function GetMyList($idStudent)
+        {
+            try
+            {
+                $aplicantsList = array();
+                $sql = "SELECT * FROM $this->tableName WHERE $this->tableName.IdStudent = '". $idStudent ."'";
+
+                $this->connection = Connection::GetInstance();
+                $arrayResult = $this->connection->Execute($sql);
+
+                foreach($arrayResult as $row)
+                {
+                    $aplicantBD = new Aplicants($row["IdStudent"], $row["IdJobOffer"], $row["CV"], $row["AplicantDescription"], $row["AplicantDate"]);
+                    array_push($aplicantsList, $aplicantBD);
                 }
 
                 return $aplicantsList;

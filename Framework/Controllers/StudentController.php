@@ -24,9 +24,9 @@
             require_once(VIEWS_PATH."logout.php");
         }
 
-        public function Showperfil($student)
+        public function ShowPerfil()
         {
-            $studentFinded = $student;
+            $studentFinded =  $_SESSION["student"];
             require_once(VIEWS_PATH."student-perfil.php");
         }
 
@@ -84,7 +84,7 @@
                     if($password == $studentBD[0]->getPassword())
                     {
                         $_SESSION["student"] = $studentBD[0];
-                        $this->ShowPerfil($studentBD[0]);
+                        $this->ShowPerfil();
                     }
                     else
                     {
@@ -96,7 +96,7 @@
                     $arrayStudents = $this->studentDAO->GetAll();
                     $_SESSION["student"] = $studentFinded;
                 
-                    $this->ShowPerfil($studentFinded);
+                    $this->ShowPerfil();
                 } 
                 else
                 {
@@ -117,7 +117,7 @@
                 $studentFinded = null;
                 foreach($studentList as $student)
                 {
-                    if($email == $student->getEmail()){
+                    if($email == $student->getEmail() && $student->getStudyStatus() === true){
                         $studentFinded = $student;
                     }
                 }
@@ -127,7 +127,7 @@
 
                 if(is_null($studentFinded) && empty($student) && $email != "admin@utn.com")
                 {
-                    $homeController->Index("El email no es valido!");
+                    $homeController->Index("El email no es valido o el usuario no esta activo!");
                 }
                 elseif($email == "admin@utn.com")
                 {
@@ -159,13 +159,13 @@
                     $this->studentDAO->Add($studentFinded);
                     $this->studentDAO->SetPassword($email, $password);
                     $_SESSION["student"] = $studentFinded;
-                    $this->ShowPerfil($studentFinded);
+                    $this->ShowPerfil();
                 }
                 else
                 {
                     $this->studentDAO->SetPassword($email, $password);
                     $_SESSION["student"] = $studentBD[0];
-                    $this->ShowPerfil($studentBD[0]);
+                    $this->ShowPerfil();
                 }
             }
 

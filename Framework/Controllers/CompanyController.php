@@ -70,15 +70,16 @@
             $companyFinded = null;
             foreach($companyList as $company)
             {
-                if($name == $company->getName()){
+
+                if(strcasecmp($name,$company->getName()) == 0){
                     $companyFinded = $company;
                 }
             }
             
             require_once(VIEWS_PATH."company-list.php");
-
             return $companyFinded;
-        }        
+        }       
+
         public function Add($name, $cuil, $address, $phoneNumber,$email)
         {
             $company = new Company($name,$cuil,$address,$phoneNumber,$email);
