@@ -58,49 +58,59 @@
                 foreach($studentList as $student)
                 {
                     if($email == $student->getEmail()){
-                        $studentFinded = $student;
+                        if($student->getStudyStatus() === true)
+                        {
+                            $studentFinded = $student;
+                        }
+                        else
+                        {
+                            $studentFinded = null;
+                            $homeController->Index("El email no es valido o el usuario no esta activo!");
+                        }
                     }
                 }
 
                 $studentBD = $this->studentDAO->GetStudentByEmail($email);
-
-                if($email === "admin@utn.com")
+                if(!is_null($studentFinded) || $email === "admin@utn.com")
                 {
-                    if($password === "12345")
+                    if($email === "admin@utn.com")
                     {
-                        $email = "admin@utn.com";
-                        $_SESSION["admin"] = $email;
+                        if($password === "12345")
+                        {
+                            $email = "admin@utn.com";
+                            $_SESSION["admin"] = $email;
 
-                        require_once(VIEWS_PATH."student-add.php");
+                            require_once(VIEWS_PATH."student-add.php");
+                        }
+                        else
+                        {
+                            $homeController->Index("Los datos son incorrectos!");
+                        }
+                        
                     }
-                    else
+                    elseif(!empty($studentBD))
                     {
-                         $homeController->Index("Los datos son incorrectos!");
+                        if($password == $studentBD[0]->getPassword())
+                        {
+                            $_SESSION["student"] = $studentBD[0];
+                            $this->ShowPerfil();
+                        }
+                        else
+                        {
+                            $homeController->Index("Contraseña incorrecta!");
+                        }
                     }
+                    elseif (!is_null($studentFinded))
+                    {
+                        $arrayStudents = $this->studentDAO->GetAll();
+                        $_SESSION["student"] = $studentFinded;
                     
-                }
-                elseif(!empty($studentBD))
-                {
-                    if($password == $studentBD[0]->getPassword())
-                    {
-                        $_SESSION["student"] = $studentBD[0];
                         $this->ShowPerfil();
-                    }
+                    } 
                     else
                     {
-                        $homeController->Index("Contraseña incorrecta!");
+                        $homeController->Index("Los datos ingresados no son validos!");
                     }
-                }
-                elseif (!is_null($studentFinded))
-                {
-                    $arrayStudents = $this->studentDAO->GetAll();
-                    $_SESSION["student"] = $studentFinded;
-                
-                    $this->ShowPerfil();
-                } 
-                else
-                {
-                    $homeController->Index("Los datos ingresados no son validos!");
                 }
             }
             else
