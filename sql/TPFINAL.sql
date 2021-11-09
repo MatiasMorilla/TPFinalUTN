@@ -1,3 +1,4 @@
+DROP DATABASE TPFINAL;
 CREATE DATABASE TPFINAL;
 USE TPFINAL;
 
@@ -13,8 +14,6 @@ CREATE TABLE COMPANIES(
 
 insert into COMPANIES value("Accenture", 123456, "Inependencia 4300", "22354678", "accenture@accenture.com");
 select * from COMPANIES;
-
-drop table COMPANIES;
 
 CREATE TABLE CAREERS(
 	IdCareer INT NOT NULL,
@@ -43,11 +42,6 @@ CREATE TABLE JOBS(
     CONSTRAINT fk_Company FOREIGN KEY (NameCompany) references COMPANIES (CompanyName)
 );
 
-drop table JOBS;
-
-
-drop table REQUIREMENTS;
-
 CREATE TABLE STUDENTS(
 	dni varchar(50) NOT NULL,
     fileNumber varchar(50),
@@ -65,9 +59,6 @@ CREATE TABLE STUDENTS(
     CONSTRAINT UNQ_Dni UNIQUE(dni)
 );
 
-
-drop table STUDENTS;
-
 /*CREATE TABLE STUDENT_X_CAREER(
 	IdStudent INT NOT NULL,
     IdCareer INT NOT NULL,
@@ -84,11 +75,10 @@ CREATE TABLE APLICANTS(
     AplicantDate date NOT NULL,
     CONSTRAINT pk_IdStudent_IdJobOffer primary key(IdStudent, IdJobOffer),
     CONSTRAINT fk_IdStudent_ap foreign key(IdStudent) references STUDENTS(fileNumber),
-	CONSTRAINT fk_IdJobOffer_ap foreign key(IdJobOffer) references JOBS(IdJobOffer)
+	CONSTRAINT fk_IdJobOffer_ap foreign key(IdJobOffer) references JOBS(IdJobOffer) ON DELETE CASCADE
 );
 
 show tables;
-drop table APLICANTS;
 
 select * from COMPANIES where COMPANIES.CompanyName = "Accenture";
 update COMPANIES SET PhoneNumber = "2235024545" where COMPANIES.CompanyName = "Globant";
