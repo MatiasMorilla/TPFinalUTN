@@ -1,8 +1,8 @@
-<?php
+<!-- <?php
     require_once('nav.php');
     require_once("session-valid.php");
-?>
-<main class="py-5">
+?> -->
+<!-- <main class="py-5">
      <section id="listado" class="mb-5">
           <div class="container">
               <form action="<?php echo FRONT_ROOT ?>Job/RemoveJob" method="post" class="bg-light-alpha p-5">
@@ -17,4 +17,4 @@
                 </form>
           </div>
      </section>
-</main>
+</main> -->

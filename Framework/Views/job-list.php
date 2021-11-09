@@ -119,6 +119,19 @@
                                                 ?> 
                                             </div> 
                                             </td>
+                                             <td>
+                                                  <?php
+                                                    if(isset($_SESSION["admin"]))
+                                                    {
+                                                        ?>
+                                                        <form action="<?php echo FRONT_ROOT ?>Job/RemoveJob" method="POST">
+                                                            <input type="text" name="IdJobOffer" value="<?php echo $job->getId_position() ?>" style="display:none" />
+                                                            <button class="btn btn-secondary my-2 my-sm-0 ml-2" type="submit">Eliminar</button>
+                                                       </form>
+                                                  <?php
+                                                    }
+                                                  ?>
+                                             </td>
                                         </tr>
                                    <?php
                                    }
