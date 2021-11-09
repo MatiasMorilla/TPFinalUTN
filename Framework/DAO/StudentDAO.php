@@ -12,24 +12,23 @@
         private $connection;
         private $tableName = "STUDENTS";
 
-        public function Add(Student $student)
+        public function Add(Student $student, $idUser)
         {
             try
             {
-                $sql = "INSERT INTO $this->tableName (email, password, name, lastName, dni, gender, birthDate, phoneNumber, fileNumber, studyStatus, career) 
-                        VALUES (:email, :password, :name, :lastName, :dni, :gender, :birthDate, :phoneNumber, :fileNumber, :studyStatus, :career)";
-                        
-                    $parameters["email"] = $student->getEmail();
-                    $parameters["password"] = $student->getPassword();
-                    $parameters["name"] = $student->getName();
-                    $parameters["lastName"] = $student->getLastName();
-                    $parameters["dni"] = $student->getDni();
-                    $parameters["gender"] = $student->getGender();
-                    $parameters["birthDate"] = $student->getBirthDate();
-                    $parameters["phoneNumber"] = $student->getPhoneNumber();
-                    $parameters["fileNumber"] = $student->getFileNumber();
-                    $parameters["studyStatus"] = $student->getStudyStatus();
-                    $parameters["career"] = $student->getCareer();
+                $sql = "INSERT INTO $this->tableName (name, lastName, idUser, dni, gender, birthDate, phoneNumber, fileNumber, studyStatus, career) 
+                        VALUES (:name, :lastName, :idUser, :dni, :gender, :birthDate, :phoneNumber, :fileNumber, :studyStatus, :career)";
+
+                $parameters["name"] = $student->getName();
+                $parameters["lastName"] = $student->getLastName();
+                $parameters["idUser"] = $idUser;
+                $parameters["dni"] = $student->getDni();
+                $parameters["gender"] = $student->getGender();
+                $parameters["birthDate"] = $student->getBirthDate();
+                $parameters["phoneNumber"] = $student->getPhoneNumber();
+                $parameters["fileNumber"] = $student->getFileNumber();
+                $parameters["studyStatus"] = $student->getStudyStatus();
+                $parameters["career"] = $student->getCareer();
 
                 $this->connection = Connection::GetInstance();
 
@@ -88,7 +87,7 @@
             }
         }
 
-        public function SearchstudentByEmail($email)
+        public function SearchStudentByEmail($email)
         {
             if(!empty($email))
             {
@@ -105,64 +104,6 @@
             } 
         }    
 
-       /*  private function SaveData()
-        {
-            $arrayToEncode = array();
-
-            foreach($this->studentList as $student)
-            {
-                $parameters["email"] = $student->getEmail();
-                $parameters["password"] = $student->getPassword();
-                $parameters["name"] = $student->getName();
-                $parameters["lastName"] = $student->getLastName();
-                $parameters["dni"] = $student->getDni();
-                $parameters["gender"] = $student->getGender();
-                $parameters["birthDate"] = $student->getBirthDate();
-                $parameters["phoneNumber"] = $student->getPhoneNumber();
-                $parameters["fileNumber"] = $student->getFileNumber();
-                $parameters["studyStatus"] = $student->getStudyStatus();
-                $parameters["career"] = $student->getCareer();
-                $parameters["idStudent"] = $student->getIdStudent();
-
-                array_push($arrayToEncode, $parameters);
-            }
-
-            $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
-            
-            file_put_contents('Data/students.json', $jsonContent);
-        }
-
-        private function RetrieveData()
-        {
-            $this->studentList = array();
-
-            if(file_exists('Data/students.json'))
-            {
-                $jsonContent = file_get_contents('Data/students.json');
-
-                $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
-
-                foreach($arrayToDecode as $parameters)
-                {
-                    $email = $parameters["email"];
-                    $password = $parameters["password"];
-                    $name = $parameters["name"];
-                    $lastName = $parameters["lastName"];
-                    $dni = $parameters["dni"];
-                    $gender = $parameters["gender"];
-                    $birthDate = $parameters["birthDate"];
-                    $phoneNumber = $parameters["phoneNumber"];
-                    $fileNumber = $parameters["fileNumber"];
-                    $studyStatus = $parameters["studyStatus"];
-                    $career = $parameters["career"];
-                    $idStudent = $parameters["idStudent"];
-                    
-                    $student = new Student($email, $password, $name, $lastName, $dni, $gender, $birthDate, $phoneNumber, $fileNumber, $studyStatus, $career, $idStudent);
-                
-                    array_push($this->studentList, $student);
-                }
-            }
-        }*/
         private function RetrieveDataAPI()
         {
             $this->studentList = array();
