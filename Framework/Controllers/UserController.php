@@ -48,7 +48,9 @@
             $user->setIdRol($idRol);
 
             $this->UserDAO->Add($user);
-
+            ?>
+            <script>alert("admin creado con exito :)")</script>
+            <?php
             $this->ShowAddView();
         }
 

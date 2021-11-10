@@ -88,6 +88,32 @@
             }
         }
 
+        
+        public function getJobByIdJobOffer($idJobOffer)
+        {
+            try
+            {
+                $jobList = array();
+                $sql = "SELECT * FROM $this->tableName WHERE $this->tableName.IdJobOffer = $idJobOffer";
+
+                $this->connection = Connection::GetInstance();
+                $arrayResult = $this->connection->Execute($sql);
+
+                foreach($arrayResult as $row)
+                {
+                    $job = new Job($row["IdPosition"], $row["IdCareer"], $row["NameCompany"], $row["JobPosition"], $row["JobDescription"], $row["JobBenefits"], $row["JobRequirements"], $row["JobDate"]);
+                    $job->setIdJobOffer($row["IdJobOffer"]);
+                    array_push($jobList, $job);
+                }
+
+                return $jobList[0];
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
         public function ModifyJob($IdJobOffer, $attr, $newValue)
         {
             try

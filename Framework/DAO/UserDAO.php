@@ -25,9 +25,6 @@
                 $this->connection = Connection::GetInstance();
 
                 $this->connection->ExecuteNonQuery($sql, $parameters);
-                ?>
-                <script>alert("admin creado con exito :)")</script>
-                <?php
             }
             catch(Exception $ex)
             {

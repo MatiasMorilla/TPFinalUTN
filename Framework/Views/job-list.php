@@ -37,6 +37,7 @@
                     <thead>
                          <th>Empresa</th>
                          <th>Puesto</th>
+                         <th>Carrera</th>
                          <th>Descripcion</th>
                          <th>Requisitos</th>
                          <th>Beneficios</th>
@@ -51,6 +52,7 @@
                                         <tr>
                                              <td><?php echo $job->getCompany() ?></td>
                                              <td><?php echo $job->getPosition() ?></td>
+                                             <td><?php echo $job->getId_career() ?></td>
                                              <td><?php echo $job->getDescription() ?></td>
                                              <td><?php echo $job->getRequirements() ?></td>
                                              <td><?php echo $job->getBenefits() ?></td>
@@ -89,6 +91,7 @@
                                         <tr>
                                             <td><?php echo $job->getCompany() ?></td>
                                             <td><?php echo $job->getPosition() ?></td>
+                                            <td><?php echo $job->getId_career() ?></td>
                                             <td><?php echo $job->getDescription() ?></td>
                                             <td><?php echo $job->getRequirements() ?></td>
                                             <td><?php echo $job->getBenefits() ?></td>

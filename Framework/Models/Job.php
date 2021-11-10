@@ -45,26 +45,7 @@
                 return $this;
         }
 
-        /**
-         * Get the value of id_career
-         */ 
-        public function getId_career()
-        {
-                return $this->id_career;
-        }
-
-        /**
-         * Set the value of id_career
-         *
-         * @return  self
-         */ 
-        public function setId_career($id_career)
-        {
-                $this->id_career = $id_career;
-
-                return $this;
-        }
-
+        
         /**
          * Get the value of company
          */ 
@@ -81,7 +62,7 @@
         public function setCompany($company)
         {
                 $this->company = $company;
-
+                
                 return $this;
         }
 
@@ -101,10 +82,10 @@
         public function setPosition($position)
         {
                 $this->position = $position;
-
+                
                 return $this;
         }
-
+        
         /**
          * Get the value of description
          */ 
@@ -112,7 +93,7 @@
         {
                 return $this->description;
         }
-
+        
         /**
          * Set the value of description
          *
@@ -121,10 +102,10 @@
         public function setDescription($description)
         {
                 $this->description = $description;
-
+                
                 return $this;
         }
-
+        
         /**
          * Get the value of requirements
          */ 
@@ -132,7 +113,7 @@
         {
                 return $this->requirements;
         }
-
+        
         /**
          * Set the value of requirements
          *
@@ -141,10 +122,10 @@
         public function setRequirements($requirements)
         {
                 $this->requirements = $requirements;
-
+                
                 return $this;
         }
-
+        
         /**
          * Get the value of benefits
          */ 
@@ -152,7 +133,7 @@
         {
                 return $this->benefits;
         }
-
+        
         /**
          * Set the value of benefits
          *
@@ -164,7 +145,7 @@
 
                 return $this;
         }
-
+        
         /**
          * Get the value of date
          */ 
@@ -172,7 +153,7 @@
         {
                 return $this->date;
         }
-
+        
         /**
          * Set the value of date
          *
@@ -181,10 +162,10 @@
         public function setDate($date)
         {
                 $this->date = $date;
-
+                
                 return $this;
         }
-
+        
         /**
          * Get the value of idJobOffer
          */ 
@@ -192,7 +173,7 @@
         {
                 return $this->idJobOffer;
         }
-
+        
         /**
          * Set the value of idJobOffer
          *
@@ -201,9 +182,62 @@
         public function setIdJobOffer($idJobOffer)
         {
                 $this->idJobOffer = $idJobOffer;
+                
+                return $this;
+        }
 
+        /**
+         * Get the value of id_career
+         */ 
+        public function getId_career()
+        {
+                if($this->id_career == 1)
+                {
+                        $this->id_career = "Naval engineering";
+                }
+                elseif($this->id_career == 2)
+                {
+                        $this->id_career = "Fishing engineering";
+                }
+                elseif($this->id_career == 3)
+                {
+                        $this->id_career = "University technician in programming";
+                }
+                elseif($this->id_career == 4)
+                {
+                        $this->id_career = "University technician in computer systems";
+                }
+                elseif($this->id_career == 5)
+                {
+                        $this->id_career = "University technician in textile production";
+                }
+                elseif($this->id_career == 6)
+                {
+                        $this->id_career = "University technician in administration";
+                }
+                elseif($this->id_career == 7)
+                {
+                        $this->id_career = "Bachelor in environmental management";
+                }
+                elseif($this->id_career == 8)
+                {
+                        $this->id_career = "University technician in environmental procedures and technologies";
+                }
+
+                return $this->id_career;
+        }
+    
+        /**
+         * Set the value of id_career
+         *
+         * @return  self
+         */ 
+        public function setId_career($id_career)
+        {
+                $this->id_career = $id_career;
+    
                 return $this;
         }
     }
-
+    
 ?>
