@@ -18,7 +18,7 @@
                {
                     ?>
                          <li class="nav-item">
-                              <a class="nav-link" href="<?php echo FRONT_ROOT ?>Student/Showperfil">Mi perfil</a>
+                              <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/Showperfil">Mi perfil</a>
                          </li>
                          <li class="nav-item">
                               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowListView">Listar Empresas</a>
@@ -41,7 +41,7 @@
                {
                     ?>
                          <li class="nav-item">
-                              <a class="nav-link" href="<?php echo FRONT_ROOT ?>Student/ShowAddView">Agregar Alumno</a>
+                              <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/ShowAddView">Agregar administrador</a>
                          </li>
                          <li class="nav-item">
                               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Student/ShowListView">Listar Alumnos</a>

@@ -1,4 +1,3 @@
-DROP DATABASE TPFINAL;
 CREATE DATABASE TPFINAL;
 USE TPFINAL;
 
@@ -14,6 +13,8 @@ CREATE TABLE COMPANIES(
 
 insert into COMPANIES value("Accenture", 123456, "Inependencia 4300", "22354678", "accenture@accenture.com");
 select * from COMPANIES;
+
+drop table COMPANIES;
 
 CREATE TABLE CAREERS(
 	IdCareer INT NOT NULL,
@@ -42,12 +43,39 @@ CREATE TABLE JOBS(
     CONSTRAINT fk_Company FOREIGN KEY (NameCompany) references COMPANIES (CompanyName)
 );
 
+drop table JOBS;
+select * from JOBS;
+delete FROM JOBS WHERE JOBS.IdJobOffer = 2;
+drop table REQUIREMENTS;
+
+CREATE TABLE ROLES(
+	idRol INT NOT NULL auto_increment,
+    rol VARCHAR(20) NOT NULL,
+    CONSTRAINT pk_idRol primary key(idRol)
+);
+
+INSERT INTO ROLES(rol) VALUES("Estudiante"),( "Admin");
+SELECT * FROM ROLES;
+
+CREATE TABLE USERS(
+	idUser INT NOT NULL auto_increment,
+	email VARCHAR(40) NOT NULL,
+    password VARCHAR(40) NOT NULL,
+    idRol INT NOT NULL,
+    CONSTRAINT pk_idUser primary key(idUser),
+    CONSTRAINT fk_idRol foreign key(idRol) references ROLES(idRol),
+    CONSTRAINT unq_email UNIQUE(email)
+);
+
+SELECT * FROM USERS;
+INSERT INTO USERS(email, password, idRol) VALUEs("admin@utn.com", "12345", "2");
+DELETE FROM USERS WHERE USERS.idUser = "3";
+
 CREATE TABLE STUDENTS(
 	dni varchar(50) NOT NULL,
     fileNumber varchar(50),
+    idUser INT NOT NULL,
     studyStatus VARCHAR(20) NOT NULL,
-    email VARCHAR(40) NOT NULL,
-    password VARCHAR(40) NOT NULL,
     name VARCHAR(40) NOT NULL,
     lastName VARCHAR(40) NOT NULL,
     gender VARCHAR(20) NOT NULL,
@@ -55,9 +83,25 @@ CREATE TABLE STUDENTS(
     phoneNumber VARCHAR(30) NOT NULL,
     career varchar(50) NOT NULL,
     CONSTRAINT pk_STUDENT primary key (fileNumber),
-    CONSTRAINT UNQ_StudentEmail UNIQUE(email),
+    CONSTRAINT fk_idUser foreign key(idUser) references USERS(idUser),
     CONSTRAINT UNQ_Dni UNIQUE(dni)
 );
+
+CREATE TABLE ADMINS(
+	dni varchar(50) NOT NULL,
+    idUser INT NOT NULL,
+    name VARCHAR(40) NOT NULL,
+    lastName VARCHAR(40) NOT NULL,
+    gender VARCHAR(20) NOT NULL,
+    birthDate DATE NOT NULL,
+    phoneNumber VARCHAR(30) NOT NULL,
+    CONSTRAINT pk_Admin primary key (dni),
+    CONSTRAINT fk_idUser_admin foreign key(idUser) references USERS(idUser)
+);
+
+
+drop table STUDENTS;
+SELECT * FROM STUDENTS;
 
 /*CREATE TABLE STUDENT_X_CAREER(
 	IdStudent INT NOT NULL,
@@ -79,12 +123,15 @@ CREATE TABLE APLICANTS(
 );
 
 show tables;
+drop table APLICANTS;
+select * from APLICANTS;
+DELETE FROM APLICANTS WHERE APLICANTS.IdStudent = "1";
 
 select * from COMPANIES where COMPANIES.CompanyName = "Accenture";
 update COMPANIES SET PhoneNumber = "2235024545" where COMPANIES.CompanyName = "Globant";
 
 UPDATE JOBS SET JobDescription = "no vas a hcer nada" WHERE JOBS.IdPosition = 5;
 
-select * from STUDENTS;
-
+select * from STUDENTS WHERE STUDENTS.FileNumber = "54-465-2736";
+SELECT FROM JOBS WHERE JOBS.JobPosition = 'Jr naval engineer';
 UPDATE STUDENTS SET password = '123456' WHERE STUDENTS.email = "ddouthwaite0@goo.gl";
