@@ -61,15 +61,32 @@
                          <li class="nav-item">
                               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Job/ShowListView">Listar Empleos</a>
                          </li>   
-                         <!-- <li class="nav-item">
-                              <a class="nav-link" href="<?php echo FRONT_ROOT ?>Job/ShowRemove">Eliminar Empleo</a>
-                         </li>   -->
                          <li class="nav-item">
                               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Aplicants/ShowListView">Lista de aplicantes</a>
                          </li> 
                          <li class="nav-item">
                               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Student/ShowLogout">Log out</a>
                          </li>
+                    <?php
+               }
+               elseif(isset($_SESSION["company"])) 
+               {
+                    ?>
+                    <li class="nav-item">
+                         <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/ShowPerfilCompany">Mi perfil</a>
+                    </li>
+                    <li class="nav-item">
+                         <a class="nav-link" href="<?php echo FRONT_ROOT ?>Job/ShowAddView">Agregar Empleo</a>
+                    </li>    
+                    <li class="nav-item">
+                         <a class="nav-link" href="<?php echo FRONT_ROOT ?>Job/ShowListView">Listar Empleos</a>
+                    </li>   
+                    <li class="nav-item">
+                         <a class="nav-link" href="<?php echo FRONT_ROOT ?>Aplicants/ShowListView">Lista de aplicantes</a>
+                    </li> 
+                    <li class="nav-item">
+                         <a class="nav-link" href="<?php echo FRONT_ROOT ?>Student/ShowLogout">Log out</a>
+                    </li>
                     <?php
                }
                else

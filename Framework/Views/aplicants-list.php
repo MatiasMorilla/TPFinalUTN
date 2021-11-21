@@ -28,15 +28,35 @@
                               foreach($aplicantsList as $key => $aplicant)
                               {
                                    $job = $jobDAO->getJobByIdJobOffer($aplicant->getIdjobOffer());
-                                   ?>
-                                        <tr>
-                                             <td><?php echo $aplicant->getIdStudent() ?></td>
-                                             <td><?php echo $job->getPosition() ?></td>
-                                             <td><?php echo $aplicant->getCv() ?></td>
-                                             <td><?php echo $aplicant->getAplicantDescription() ?></td>
-                                             <td><?php echo $aplicant->getAplicantDate() ?></td>
-                                        </tr>
-                                   <?php
+
+                                   if(!isset($_SESSION["company"]))
+                                   {
+                                        ?>
+                                             <tr>
+                                                  <td><?php echo $aplicant->getIdStudent() ?></td>
+                                                  <td><?php echo $job->getPosition() ?></td>
+                                                  <td><?php echo $aplicant->getCv() ?></td>
+                                                  <td><?php echo $aplicant->getAplicantDescription() ?></td>
+                                                  <td><?php echo $aplicant->getAplicantDate() ?></td>
+                                             </tr>
+                                        <?php
+                                   }
+                                   else
+                                   {
+                                        $company = $_SESSION["company"];
+                                        if($job->getCompany() == $company->getName())
+                                        {
+                                             ?>
+                                                  <tr>
+                                                       <td><?php echo $aplicant->getIdStudent() ?></td>
+                                                       <td><?php echo $job->getPosition() ?></td>
+                                                       <td><?php echo $aplicant->getCv() ?></td>
+                                                       <td><?php echo $aplicant->getAplicantDescription() ?></td>
+                                                       <td><?php echo $aplicant->getAplicantDate() ?></td>
+                                                  </tr>
+                                             <?php
+                                        }
+                                   }
                               }
                          ?>
                     </tbody>

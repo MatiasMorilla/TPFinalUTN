@@ -33,21 +33,35 @@
                                 <input type="date" name="date" value="" class="form-control">
                             </div>
                         </div>  
-                        <div class="col-lg-4">
-                            <div class="form-group">
-                                <label for="">Empresa</label>
-                                <br>
-                                <select name="company">
-                                    <?php 
-                                            foreach($companyList as $company)
-                                            {
-                                                $name = $company->getName();
-                                                echo "<option value='$name'> $name </option>";
-                                            }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
+                        <?php
+                            if(isset($_SESSION["admin"]))
+                            {
+                                ?>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="">Empresa</label>
+                                        <br>
+                                        <select name="company">
+                                            <?php 
+                                                    foreach($companyList as $company)
+                                                    {
+                                                        $name = $company->getName();
+                                                        echo "<option value='$name'> $name </option>";
+                                                    }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <?php
+                            }
+                            elseif(isset($_SESSION["company"]))
+                            {
+                                $company = $_SESSION["company"];
+                                ?>
+                                    <input type="text" value="<?php $company->getName() ?>" name="company" style="display: none">
+                                <?php
+                            }
+                        ?>
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
