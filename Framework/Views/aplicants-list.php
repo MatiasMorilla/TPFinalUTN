@@ -1,6 +1,6 @@
 <?php
     require_once('nav.php');
-    require_once("session-valid.php");
+/*     require_once("session-valid.php"); */
 
     use DAO\JobDAO as JobDAO;
     $jobDAO = new JobDAO();
