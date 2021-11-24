@@ -3,7 +3,9 @@
 /*     require_once("session-valid.php"); */
 
     use DAO\JobDAO as JobDAO;
+    use DAO\StudentDAO as StudentDAO;
     $jobDAO = new JobDAO();
+    $studentDAO = new StudentDAO();
 ?>
 <main class="py-5">
      <section id="listado" class="mb-5">
@@ -28,7 +30,8 @@
                               foreach($aplicantsList as $key => $aplicant)
                               {
                                    $job = $jobDAO->getJobByIdJobOffer($aplicant->getIdjobOffer());
-
+                                   $student = $studentDAO->GetStudentById($aplicant->getIdStudent());
+                                   
                                    if(!isset($_SESSION["company"]))
                                    {
                                         ?>
@@ -38,6 +41,16 @@
                                                   <td><?php echo $aplicant->getCv() ?></td>
                                                   <td><?php echo $aplicant->getAplicantDescription() ?></td>
                                                   <td><?php echo $aplicant->getAplicantDate() ?></td>
+                                                  <td>
+                                                       <div class="d-flex">
+                                                            <form action="<?php echo FRONT_ROOT ?>Aplicants/Remove" method="POST">
+                                                                 <!-- <input type="text" value="<?php /*echo $student[0]->getEmail();*/ ?>" name="email" style="display:none" > -->
+                                                                 <input type="text" value="matiasmorilla@hotmail.com" name="email" style="display:none" >
+                                                                 <input type="text" value="<?php echo $student[0]->getFileNumber(); ?>" name="id" style="display:none" >
+                                                                 <button class="btn btn-secondary my-2 my-sm-0" type="submit">Eliminar</button>
+                                                            </form>
+                                                       </div> 
+                                                  </td>
                                              </tr>
                                         <?php
                                    }

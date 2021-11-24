@@ -102,6 +102,21 @@
             }
         }
 
+        public function Remove($id)
+        {
+            try
+            {
+                $sql = "DELETE FROM $this->tableName a WHERE a.IdStudent = '" . $id . "'";
+
+                $this->connection = Connection::GetInstance();
+
+                $this->connection->ExecuteNonQuery($sql);
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
     }
 ?>
 

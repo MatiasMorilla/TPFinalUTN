@@ -72,6 +72,31 @@
             }
         }
 
+        public function GetStudentById($id)
+        {
+            try
+            {
+                $studentList = array();
+                $sql = "SELECT * FROM $this->tableName s inner join USERS on s.idUser = USERS.idUser WHERE s.fileNumber = '". $id . "'";  
+                                      
+                $this->connection = Connection::GetInstance();
+
+                $arrayResult = $this->connection->Execute($sql);
+                foreach($arrayResult as $row)
+                {
+                    $student = new Student($row["email"], $row["password"], $row["name"], $row["lastName"], $row["dni"], $row["gender"],
+                     $row["birthDate"], $row["phoneNumber"], $row["fileNumber"], $row["studyStatus"], $row["career"]);
+                    array_push($studentList, $student);
+                }
+
+                return $studentList;
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
         public function SetPassword($email, $password)
         {
             try

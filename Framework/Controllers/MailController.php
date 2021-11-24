@@ -16,7 +16,7 @@
 			$email->send();
 		}
 
-		public function SendDeclineInfo($to, $info){
+		public function SendDeclineInfo($to, $info = "Tu postulacion a sido rechazada"){
 
 			$text = "<h3>Postulacion rechazada</h3>
 					<p> $info </p>
