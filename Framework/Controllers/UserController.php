@@ -22,7 +22,6 @@
         public function ShowAddView()
         {
             require_once(VIEWS_PATH."user-add.php");
-            require_once(VIEWS_PATH."sendmail.php");
         }
 
         public function ShowPerfil()
