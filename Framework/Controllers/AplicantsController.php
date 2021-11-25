@@ -40,11 +40,11 @@
             $this->ShowMyList($fileNumber);
         }
 
-        public function Remove($email, $id, $info = "Tu postulacion a sido rechazada")
+        public function Remove($email, $id,  $idJobOffer, $info = "Tu postulacion a sido rechazada")
         {
             $mail = new MailController();
             $mail->SendDeclineInfo($email);
-            $this->AplicantsDAO->Remove($id);
+            $this->AplicantsDAO->Remove($id, $idJobOffer);
             $this->ShowListView();
         }
     }

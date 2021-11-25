@@ -47,6 +47,7 @@
                                                                  <!-- <input type="text" value="<?php /*echo $student[0]->getEmail();*/ ?>" name="email" style="display:none" > -->
                                                                  <input type="text" value="matiasmorilla@hotmail.com" name="email" style="display:none" >
                                                                  <input type="text" value="<?php echo $student[0]->getFileNumber(); ?>" name="id" style="display:none" >
+                                                                 <input type="text" value="<?php echo $aplicant->getIdJobOffer(); ?>" name="idJobOffer" style="display:none" >
                                                                  <button class="btn btn-secondary my-2 my-sm-0" type="submit">Eliminar</button>
                                                             </form>
                                                        </div> 

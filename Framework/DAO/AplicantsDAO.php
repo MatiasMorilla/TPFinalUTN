@@ -103,11 +103,11 @@
             }
         }
 
-        public function Remove($id)
+        public function Remove($id, $idJobOffer)
         {
             try
             {
-                $sql = "DELETE FROM $this->tableName a WHERE a.IdStudent = '" . $id . "'";
+                $sql = "DELETE FROM $this->tableName a WHERE a.IdStudent = '" . $id . "' AND a.IdJobOffer = '" . $idJobOffer . "'";
 
                 $this->connection = Connection::GetInstance();
 
