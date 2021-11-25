@@ -2,7 +2,9 @@
     namespace Controllers;
 
     use DAO\CompanyDAO as companyDAO;
+    use DAO\UserDAO as UserDAO;
     use Models\Company as company;
+    use Controllers\UserController as UserController;
 
     class CompanyController
     {
@@ -80,11 +82,22 @@
             return $companyFinded;
         }       
 
-        public function Add($name, $cuil, $address, $phoneNumber,$email)
+        public function Add($name, $cuil, $address, $phoneNumber, $email)
         {
-            $company = new Company($name,$cuil,$address,$phoneNumber,$email);
-            
+            // Creamos el user
+            $userCrontroller = new UserController();
+            $userDAO = new UserDAO();
+            $userCrontroller->AddUser($email, "1234", "3");
+            $userBD = $userDAO->GetuserByEmail($email);
+            $idUser = $userBD[0]->getIdUser();
+
+            // Creamos la company
+            $company = new Company($name, $cuil, $address, $phoneNumber, $email, "1234", $idUser);
             $this->CompanyDAO->Add($company);
+
+            ?>
+                <script>alert("Empresa creado con exito :)")</script>
+            <?php
 
             $this->ShowAddView();
         }

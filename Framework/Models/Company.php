@@ -1,25 +1,24 @@
 <?php 
     namespace Models;
 
-    //use Models\Address as Address;
+    use Models\User as User;
   
-    class Company 
+    class Company extends User
     {
         private $name;
         private $cuil;
         private $address;
         private $phoneNumber;
-        private $email;
+        private $idUser;
 
-        public function __construct($name, $cuil, $address, $phoneNumber, $email)
+        public function __construct($name, $cuil, $address, $phoneNumber, $email, $password, $idUser)
         {
-            
+            parent::__construct($email, $password);
             $this->name = $name;
             $this->cuil = $cuil;
             $this->address = $address;
-            //$this->address = new Address($city, $street, $number, $floor, $apartment);
             $this->phoneNumber = $phoneNumber;
-            $this->email = $email;
+            $this->idUser = $idUser;
         }
 
 
@@ -74,10 +73,6 @@
         {
                 return $this->phoneNumber;
         }
-        public function getEmail()
-        {
-                return $this->email;
-        }
 
         /**
          * Set the value of phoneNumber
@@ -92,25 +87,21 @@
         }
 
         /**
-         * Set the value of email
-         *
-         * @return  self
+         * Get the value of idUser
          */ 
-        public function setEmail($email)
+        public function getIdUser()
         {
-                $this->email = $email;
-
-                return $this;
+                return $this->idUser;
         }
 
         /**
-         * Set the value of address
+         * Set the value of idUser
          *
          * @return  self
          */ 
-        public function setAddress($address)
+        public function setIdUser($idUser)
         {
-                $this->address = $address;
+                $this->idUser = $idUser;
 
                 return $this;
         }

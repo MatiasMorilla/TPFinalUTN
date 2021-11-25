@@ -3,7 +3,10 @@
 
     use DAO\JobDAO as JobDAO;
     use Models\Job as Job;
+    use Models\PDF as PDF;
     use DAO\CompanyDAO as CompanyDAO;
+    use DAO\AplicantsDAO as AplicantsDAO;
+
 
     class JobController
     {
@@ -147,6 +150,38 @@
             $jobList = $this->JobDAO->SearchJob($position);
             $career = null;
             require_once(VIEWS_PATH."job-list.php");
+        }
+
+        public function PrintAplicants($IdJobOffer)
+        {
+            $aplicantsDAO = new AplicantsDAO();
+            $aplicantsList = $aplicantsDAO->GetStudentsByJobOffer($IdJobOffer);
+
+            ob_start();
+            // Creación del objeto de la clase heredada
+            $pdf = new PDF();
+            $pdf->AliasNbPages();
+            $pdf->AddPage();
+            $pdf->SetFont('Times','',12);
+
+            if(!is_null($aplicantsList))
+            {
+                for($i = 0; $i < count($aplicantsList); $i++)
+                {
+                    $pdf->Cell(38,10, $aplicantsList[$i]->getFileNumber(), 1, 0, 'C', 0);
+                    $pdf->Cell(38,10, $aplicantsList[$i]->getName(), 1, 0, 'C', 0);
+                    $pdf->Cell(38,10, $aplicantsList[$i]->getLastName(), 1, 0, 'C', 0);
+                    $pdf->Cell(38,10, $aplicantsList[$i]->getDni(), 1, 0, 'C', 0);
+                    $pdf->Cell(38,10, $aplicantsList[$i]->getPhoneNumber(), 1, 1, 'C', 0);
+                }
+            }
+            else
+            {
+                $pdf->Cell(0,10, "No hay estudiantes postulados para este trabajo", 1, 0, 'C', 0);
+            }
+
+            $pdf->Output();
+            ob_end_flush(); 
         }
 
     }

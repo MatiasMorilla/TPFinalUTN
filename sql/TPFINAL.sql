@@ -1,21 +1,6 @@
 CREATE DATABASE TPFINAL;
 USE TPFINAL;
 
-CREATE TABLE COMPANIES(
-    CompanyName VARCHAR(40) NOT NULL,
-    Cuil INT NOT NULL ,
-    Address VARCHAR(50) NOT NULL,
-    PhoneNumber VARCHAR(30) NOT NULL,
-    Email VARCHAR(50) NOT NULL ,
-    CONSTRAINT pk_Company primary key (CompanyName),
-    CONSTRAINT UNQ_Cuil_Email UNIQUE(Cuil,Email)
-);
-
-insert into COMPANIES value("Accenture", 123456, "Inependencia 4300", "22354678", "accenture@accenture.com");
-select * from COMPANIES;
-
-drop table COMPANIES;
-
 CREATE TABLE CAREERS(
 	IdCareer INT NOT NULL,
     IsActive BOOLEAN NOT NULL,
@@ -70,6 +55,24 @@ CREATE TABLE USERS(
 SELECT * FROM USERS;
 INSERT INTO USERS(email, password, idRol) VALUEs("admin@utn.com", "12345", "2");
 DELETE FROM USERS WHERE USERS.idUser = "3";
+
+CREATE TABLE COMPANIES(
+    CompanyName VARCHAR(40) NOT NULL,
+    Cuil INT NOT NULL ,
+    IdUser int not null,
+    Address VARCHAR(50) NOT NULL,
+    PhoneNumber VARCHAR(30) NOT NULL,
+    Email VARCHAR(50) NOT NULL ,
+    CONSTRAINT pk_Company primary key (CompanyName),
+    CONSTRAINT UNQ_Cuil_Email UNIQUE(Cuil,Email),
+	CONSTRAINT fk_idUser_company foreign key (IdUser) references USERS(IdUser)
+);
+
+insert into COMPANIES value("Accenture", 123456, "Inependencia 4300", "22354678", "accenture@accenture.com");
+select * from COMPANIES;
+
+drop table COMPANIES;
+
 
 CREATE TABLE STUDENTS(
 	dni varchar(50) NOT NULL,
@@ -133,5 +136,5 @@ update COMPANIES SET PhoneNumber = "2235024545" where COMPANIES.CompanyName = "G
 UPDATE JOBS SET JobDescription = "no vas a hcer nada" WHERE JOBS.IdPosition = 5;
 
 select * from STUDENTS WHERE STUDENTS.FileNumber = "54-465-2736";
-SELECT FROM JOBS WHERE JOBS.JobPosition = 'Jr naval engineer';
+SELECT * FROM JOBS WHERE JOBS.JobPosition = 'Jr naval engineer';
 UPDATE STUDENTS SET password = '123456' WHERE STUDENTS.email = "ddouthwaite0@goo.gl";

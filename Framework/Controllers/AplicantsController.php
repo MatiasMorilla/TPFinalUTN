@@ -3,6 +3,7 @@
 
     use DAO\AplicantsDAO as AplicantsDAO;
     use Models\Aplicants as Aplicants;
+    use Controllers\MailController as MailController;
 
     class AplicantsController
     {
@@ -39,6 +40,13 @@
             $this->ShowMyList($fileNumber);
         }
 
+        public function Remove($email, $id, $info = "Tu postulacion a sido rechazada")
+        {
+            $mail = new MailController();
+            $mail->SendDeclineInfo($email);
+            $this->AplicantsDAO->Remove($id);
+            $this->ShowListView();
+        }
     }
 ?>
 

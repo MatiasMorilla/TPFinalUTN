@@ -4,6 +4,7 @@
     use DAO\UserDAO as UserDAO;
     use Models\User as User;
     use DAO\studentDAO as studentDAO;
+    use DAO\CompanyDAO as CompanyDAO;
     use Models\Student as Student;
     use Controllers\HomeController as HomeController;
 
@@ -27,6 +28,19 @@
         {
             $studentFinded =  $_SESSION["student"];
             require_once(VIEWS_PATH."student-perfil.php");
+        }
+
+
+        public function ShowPerfilCompany()
+        {
+            $companyFinded =  $_SESSION["company"];
+            $companyName = $companyFinded->getName();
+            $companyAddress =  $companyFinded->getAddress();
+            $companyPhoneNumber =  $companyFinded->getPhoneNumber();
+            $companyEmail =  $companyFinded->getEmail();
+            $companyCuil=  $companyFinded->getCuil();
+
+            require_once(VIEWS_PATH."company-perfil.php");
         }
 
         public function ShowLogout()
@@ -113,6 +127,21 @@
                                 $homeController->Index("Contraseña incorrecta!");
                             }
                         }
+                        elseif($userBD[0]->getIdRol() == "3")
+                        {
+                            if($password == $userBD[0]->getPassword())
+                            {
+                                $companyDAO = new CompanyDAO();
+                                $companyFinded = $companyDAO->GetByEmail($email);
+                                $_SESSION["company"] = $companyFinded[0];
+                                $this->ShowPerfilCompany();
+                            }
+                            else
+                            {
+                                $homeController->Index("Contraseña incorrecta!");
+                            }
+                        }
+                        
                     }
                     else
                     {
@@ -128,8 +157,10 @@
         }     
 
         public function LogIn($email){
+            $homeController = new HomeController();
             if(!empty($email))
             {
+                // Verificamos si el user es un estudiante de la API
                 $studentList = $this->studentDAO->GetAll();
                 $studentFinded = null;
                 foreach($studentList as $student)
@@ -138,8 +169,8 @@
                         $studentFinded = $student;
                     }
                 }
-                
-                $homeController = new HomeController();
+
+                // Buscamos al user en la base de datos
                 $userBD = $this->UserDAO->GetUserByEmail($email);
 
                 if(is_null($studentFinded) && empty($userBD))
@@ -148,7 +179,15 @@
                 }
                 elseif(!empty($userBD))
                 {
-                    require_once(VIEWS_PATH."login2.php");
+                    if($userBD[0]->getPassword() == "1234" && $userBD[0]->getIdRol() == "3")
+                    {
+                        require_once(VIEWS_PATH."singIn.php");
+                    }
+                    else
+                    {
+                        require_once(VIEWS_PATH."login2.php");
+                    }
+                    
                 }
                 else
                 {
@@ -162,9 +201,12 @@
 
         public function CreateUser($email, $password)
         {
+            // Verificamos si es un estudiante
             $studentFinded = $this->studentDAO->SearchStudentByEmail($email);
+            // Verificamos si es una empresa
+            $userBD = $this->UserDAO->GetUserByEmail($email);
 
-            if(!is_null($studentFinded))
+            if(!is_null($studentFinded) && is_null($userBD))
             {
                 //Creamos el user
                 $this->AddUser($email, $password, "1");
@@ -176,6 +218,14 @@
 
                 $_SESSION["student"] = $studentFinded;
                 $this->ShowPerfil();
+            }
+            else
+            {
+                $companyDAO = new CompanyDAO();
+                $this->UserDAO->SetPassword($email, $password);
+                $companyFinded = $companyDAO->GetByEmail($email);
+                $_SESSION["company"] = $companyFinded[0];
+                $this->ShowPerfilCompany();
             }
 
         }
