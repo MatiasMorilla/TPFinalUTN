@@ -3,6 +3,7 @@
 
     use DAO\IAplicantsDao as IAplicantsDAO;
     use Models\Aplicants as Aplicants;
+    use Models\Student as Student;
     use DAO\Connection as Connection;
     use \Exception as Exception;
 
@@ -111,6 +112,39 @@
                 $this->connection = Connection::GetInstance();
 
                 $this->connection->ExecuteNonQuery($sql);
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
+        public function GetStudentsByJobOffer($idJobOffer)
+        {
+            try
+            {
+                $aplicantsList = array();
+                $sql = "SELECT
+                            *
+                        FROM
+                            $this->tableName a
+                            inner join jobs j on a.IdJobOffer = j.IdJobOffer
+                            inner join students s on a.IdStudent = s.fileNumber
+                            inner join users u on s.idUser = u.idUser
+                        WHERE
+                            j.IdJobOffer = $idJobOffer";
+
+                $this->connection = Connection::GetInstance();
+                $arrayResult = $this->connection->Execute($sql);
+
+                foreach($arrayResult as $row)
+                {
+                    $student = new Student($row["email"], $row["password"], $row["name"], $row["lastName"], $row["dni"], $row["gender"],
+                    $row["birthDate"], $row["phoneNumber"], $row["fileNumber"], $row["studyStatus"], $row["career"]);
+                    array_push($aplicantsList, $student);
+                }
+
+                return $aplicantsList;
             }
             catch(Exception $ex)
             {
